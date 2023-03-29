@@ -1,10 +1,9 @@
 package net.darmo_creations.n_gameplay_base.sounds;
 
 import net.darmo_creations.n_gameplay_base.NGameplayBase;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 /**
  * Declares all sounds added by this mod.
@@ -21,7 +20,7 @@ public final class ModSounds {
    */
   private static SoundEvent register(final String identifier) {
     Identifier id = new Identifier(NGameplayBase.MOD_ID, identifier);
-    return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+    return Registry.register(Registry.SOUND_EVENT, id, new SoundEvent(id));
   }
 
   /**

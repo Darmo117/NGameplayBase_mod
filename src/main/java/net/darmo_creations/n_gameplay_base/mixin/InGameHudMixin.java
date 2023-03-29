@@ -3,7 +3,6 @@ package net.darmo_creations.n_gameplay_base.mixin;
 import net.darmo_creations.n_gameplay_base.MixinUtils;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.JumpingMount;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,7 +35,7 @@ public abstract class InGameHudMixin {
   }
 
   @Inject(method = "renderMountJumpBar", at = @At("HEAD"), cancellable = true)
-  private void onRenderMountJumpBar(JumpingMount mount, MatrixStack matrixStack, int x, CallbackInfo ci) {
+  private void onRenderMountJumpBar(MatrixStack matrixStack, int x, CallbackInfo ci) {
     MixinUtils.disableIfAdventureMode(ci);
   }
 

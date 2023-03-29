@@ -68,58 +68,52 @@ public class LightOrbControllerScreen extends Screen {
     final int fontHeight = this.client.textRenderer.fontHeight;
 
     int topY = TITLE_MARGIN;
-
     int btnW = (int) (BUTTON_WIDTH * 2 / 3.0);
-    this.statusBtn = ButtonWidget
-        .builder(
-            MutableText.of(new TranslatableTextContent(
-                "gui.n_gameplay_base.light_orb_controller.status_button."
-                    + (this.active ? "active" : "inactive"))
-            ),
-            button -> {
-              this.active = !this.active;
-              this.statusBtn.setMessage(MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.status_button."
-                      + (this.active ? "active" : "inactive")
-              )));
-            }
-        )
-        .dimensions(leftButtonX, topY, btnW, BUTTON_HEIGHT)
-        .build();
 
-    this.loopBtn = ButtonWidget
-        .builder(
-            MutableText.of(new TranslatableTextContent(
-                "gui.n_gameplay_base.light_orb_controller.loop_button."
-                    + (this.loops ? "active" : "inactive"))
-            ),
-            button -> {
-              this.loops = !this.loops;
-              this.loopBtn.setMessage(MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.loop_button."
-                      + (this.loops ? "active" : "inactive")
-              )));
-            }
-        )
-        .dimensions(middle - btnW / 2, topY, btnW, BUTTON_HEIGHT)
-        .build();
+    this.statusBtn = new ButtonWidget(
+        leftButtonX, topY, btnW, BUTTON_HEIGHT,
+        MutableText.of(new TranslatableTextContent(
+            "gui.n_gameplay_base.light_orb_controller.status_button."
+                + (this.active ? "active" : "inactive"))
+        ),
+        button -> {
+          this.active = !this.active;
+          this.statusBtn.setMessage(MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.status_button."
+                  + (this.active ? "active" : "inactive")
+          )));
+        }
+    );
 
-    this.invisibilityBtn = ButtonWidget
-        .builder(
-            MutableText.of(new TranslatableTextContent(
-                "gui.n_gameplay_base.light_orb_controller.invisibility_button."
-                    + (this.invisible ? "active" : "inactive"))
-            ),
-            button -> {
-              this.invisible = !this.invisible;
-              this.invisibilityBtn.setMessage(MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.invisibility_button."
-                      + (this.invisible ? "active" : "inactive"))
-              ));
-            }
-        )
-        .dimensions(rightButtonX + BUTTON_WIDTH - btnW, topY, btnW, BUTTON_HEIGHT)
-        .build();
+    this.loopBtn = new ButtonWidget(
+        middle - btnW / 2, topY, btnW, BUTTON_HEIGHT,
+        MutableText.of(new TranslatableTextContent(
+            "gui.n_gameplay_base.light_orb_controller.loop_button."
+                + (this.loops ? "active" : "inactive"))
+        ),
+        button -> {
+          this.loops = !this.loops;
+          this.loopBtn.setMessage(MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.loop_button."
+                  + (this.loops ? "active" : "inactive")
+          )));
+        }
+    );
+
+    this.invisibilityBtn = new ButtonWidget(
+        rightButtonX + BUTTON_WIDTH - btnW, topY, btnW, BUTTON_HEIGHT,
+        MutableText.of(new TranslatableTextContent(
+            "gui.n_gameplay_base.light_orb_controller.invisibility_button."
+                + (this.invisible ? "active" : "inactive"))
+        ),
+        button -> {
+          this.invisible = !this.invisible;
+          this.invisibilityBtn.setMessage(MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.invisibility_button."
+                  + (this.invisible ? "active" : "inactive"))
+          ));
+        }
+    );
 
     topY += BUTTON_HEIGHT + MARGIN;
 
@@ -148,21 +142,17 @@ public class LightOrbControllerScreen extends Screen {
     topY += BUTTON_HEIGHT + 2 * MARGIN + fontHeight;
     int bottomY = this.height - BUTTON_HEIGHT - MARGIN;
 
-    ButtonWidget doneBtn = ButtonWidget
-        .builder(
-            MutableText.of(new TranslatableTextContent("gui.done")),
-            b -> this.onDone()
-        )
-        .dimensions(leftButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT)
-        .build();
+    ButtonWidget doneBtn = new ButtonWidget(
+        leftButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT,
+        MutableText.of(new TranslatableTextContent("gui.done")),
+        b -> this.onDone()
+    );
 
-    ButtonWidget cancelBtn = ButtonWidget
-        .builder(
-            MutableText.of(new TranslatableTextContent("gui.cancel")),
-            button -> this.client.setScreen(null)
-        )
-        .dimensions(rightButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT)
-        .build();
+    ButtonWidget cancelBtn = new ButtonWidget(
+        rightButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT,
+        MutableText.of(new TranslatableTextContent("gui.cancel")),
+        button -> this.client.setScreen(null)
+    );
 
     bottomY -= MARGIN;
 

@@ -12,8 +12,8 @@ import net.darmo_creations.n_gameplay_base.network.PacketRegistry;
 import net.darmo_creations.n_gameplay_base.network.packets.LightOrbControllerDataPacket;
 import net.darmo_creations.n_gameplay_base.sounds.ModSounds;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.mixin.client.rendering.DimensionEffectsAccessor;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -29,18 +29,18 @@ public class NGameplayBase implements ModInitializer {
   public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
   // Creative mode’s item groups
-  public static final ItemGroup BLOCKS_GROUP = FabricItemGroup
-      .builder(new Identifier(MOD_ID, "building"))
-      .icon(() -> new ItemStack(ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIERS.get(BlockColor.LIGHT_GRAY)))
-      .build();
-  public static final ItemGroup TECHNICAL_GROUP = FabricItemGroup
-      .builder(new Identifier(MOD_ID, "technical"))
-      .icon(() -> new ItemStack(ModItems.LIGHT_ORB_TWEAKER))
-      .build();
-  public static final ItemGroup CREATURES_GROUP = FabricItemGroup
-      .builder(new Identifier(MOD_ID, "creatures"))
-      .icon(() -> new ItemStack(ModBlocks.LIVING_BLOCK))
-      .build();
+  public static final ItemGroup BLOCKS_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MOD_ID, "building"),
+      () -> new ItemStack(ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIERS.get(BlockColor.LIGHT_GRAY))
+  );
+  public static final ItemGroup TECHNICAL_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MOD_ID, "technical"),
+      () -> new ItemStack(ModItems.LIGHT_ORB_TWEAKER)
+  );
+  public static final ItemGroup CREATURES_GROUP = FabricItemGroupBuilder.build(
+      new Identifier(MOD_ID, "creatures"),
+      () -> new ItemStack(ModBlocks.LIVING_BLOCK)
+  );
 
   public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MOD_ID, "void");
 

@@ -8,9 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 /**
  * Declares all block entity types added by this mod.
@@ -31,12 +30,12 @@ public final class ModBlockEntities {
    * @param <U>     Type of the associated block entity.
    * @return The registered block entity type.
    */
+  @SuppressWarnings("unchecked")
   private static <T extends BlockEntityType<U>, U extends BlockEntity> T register(
       final String name, FabricBlockEntityTypeBuilder.Factory<U> factory, final Block... blocks
   ) {
-    //noinspection unchecked
     return (T) Registry.register(
-        Registries.BLOCK_ENTITY_TYPE,
+        Registry.BLOCK_ENTITY_TYPE,
         new Identifier(NGameplayBase.MOD_ID, name),
         FabricBlockEntityTypeBuilder.create(factory, blocks).build()
     );

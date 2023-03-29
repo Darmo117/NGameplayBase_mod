@@ -42,7 +42,7 @@ public class HurtOverlay implements HudRenderCallback {
         GlStateManager.DstFactor dstFactor = GlStateManager.DstFactor.ONE;
         RenderSystem.blendFuncSeparate(srcFactor, dstFactor, srcFactor, dstFactor);
         RenderSystem.setShaderColor(RED, GREEN, BLUE, 1);
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, OVERLAY);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();

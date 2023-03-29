@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -33,11 +32,7 @@ public class PlainDoorBlock extends DoorBlock implements Colored {
    */
   public PlainDoorBlock(final BlockColor color, final boolean fullyCloses) {
     // Must use metal material to have same behavior as vanilla’s iron door
-    super(
-        ModBlock.getSettings(FabricBlockSettings.of(Material.METAL, color.getMapColor()).sounds(BlockSoundGroup.STONE)),
-        SoundEvents.BLOCK_IRON_DOOR_CLOSE,
-        SoundEvents.BLOCK_IRON_DOOR_OPEN
-    );
+    super(ModBlock.getSettings(FabricBlockSettings.of(Material.METAL, color.getMapColor()).sounds(BlockSoundGroup.STONE)));
     this.color = color;
     this.fullyCloses = fullyCloses;
   }

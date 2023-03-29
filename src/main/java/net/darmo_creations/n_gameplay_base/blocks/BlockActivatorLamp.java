@@ -108,7 +108,7 @@ public class BlockActivatorLamp extends Block {
         this.updateNeighbors(world, pos);
       }
       if (strength != 0) {
-        world.scheduleBlockTick(pos, this, TICK_DELAY);
+        world.createAndScheduleBlockTick(pos, this, TICK_DELAY);
       }
     }
   }

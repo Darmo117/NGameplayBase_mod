@@ -3,15 +3,13 @@ package net.darmo_creations.n_gameplay_base.blocks;
 import net.darmo_creations.n_gameplay_base.NGameplayBase;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.function.Function;
@@ -207,11 +205,10 @@ public final class ModBlocks {
    * @return The registered block.
    */
   private static <T extends Block> T register(final String name, final T block, final ItemGroup itemGroup) {
-    Registry.register(Registries.BLOCK, new Identifier(NGameplayBase.MOD_ID, name), block);
+    Registry.register(Registry.BLOCK, new Identifier(NGameplayBase.MOD_ID, name), block);
     if (itemGroup != null) {
-      BlockItem blockItem = new BlockItem(block, new FabricItemSettings());
-      Registry.register(Registries.ITEM, new Identifier(NGameplayBase.MOD_ID, name), blockItem);
-      ItemGroupEvents.modifyEntriesEvent(itemGroup).register(entries -> entries.add(blockItem));
+      BlockItem blockItem = new BlockItem(block, new FabricItemSettings().group(itemGroup));
+      Registry.register(Registry.ITEM, new Identifier(NGameplayBase.MOD_ID, name), blockItem);
     }
     return block;
   }

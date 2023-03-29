@@ -135,52 +135,45 @@ public class PathCheckpointListWidget extends EntryListWidget<PathCheckpointList
         }
       });
 
-      this.stopBtn = ButtonWidget
-          .builder(
-              MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
-                      + (this.checkpoint.isStop() ? "active" : "inactive")
-              )),
-              button -> {
-                this.checkpoint.setStop(!this.checkpoint.isStop());
-                button.setMessage(MutableText.of(new TranslatableTextContent(
-                    ("gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
-                        + (this.checkpoint.isStop() ? "active" : "inactive"))
-                )));
-                PathCheckpointListWidget.this.onStopButtonClicked();
-              })
-          .dimensions(0, 0, 50, 20)
-          .build();
+      this.stopBtn = new ButtonWidget(
+          0, 0, 50, 20,
+          MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
+                  + (this.checkpoint.isStop() ? "active" : "inactive")
+          )),
+          button -> {
+            this.checkpoint.setStop(!this.checkpoint.isStop());
+            button.setMessage(MutableText.of(new TranslatableTextContent(
+                ("gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
+                    + (this.checkpoint.isStop() ? "active" : "inactive"))
+            )));
+            PathCheckpointListWidget.this.onStopButtonClicked();
+          }
+      );
 
-      this.deleteBtn = ButtonWidget
-          .builder(
-              MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.delete_button"
-              )),
-              button -> PathCheckpointListWidget.this.onDeleteButtonClicked(this.index())
-          )
-          .dimensions(0, 0, 20, 20)
-          .build();
+      this.deleteBtn = new ButtonWidget(
+          0, 0, 20, 20,
+          MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.delete_button"
+          )),
+          button -> PathCheckpointListWidget.this.onDeleteButtonClicked(this.index())
+      );
 
-      this.moveUpBtn = ButtonWidget
-          .builder(
-              MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_up_button"
-              )),
-              button -> PathCheckpointListWidget.this.onMoveUpButtonClicked(this.index())
-          )
-          .dimensions(0, 0, 20, 20)
-          .build();
+      this.moveUpBtn = new ButtonWidget(
+          0, 0, 20, 20,
+          MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_up_button"
+          )),
+          button -> PathCheckpointListWidget.this.onMoveUpButtonClicked(this.index())
+      );
 
-      this.moveDownBtn = ButtonWidget
-          .builder(
-              MutableText.of(new TranslatableTextContent(
-                  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button"
-              )),
-              button -> PathCheckpointListWidget.this.onMoveDownButtonClicked(this.index())
-          )
-          .dimensions(0, 0, 20, 20)
-          .build();
+      this.moveDownBtn = new ButtonWidget(
+          0, 0, 20, 20,
+          MutableText.of(new TranslatableTextContent(
+              "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button"
+          )),
+          button -> PathCheckpointListWidget.this.onMoveDownButtonClicked(this.index())
+      );
 
       this.elements = Arrays.asList(this.ticksTextField, this.stopBtn, this.deleteBtn, this.moveUpBtn, this.moveDownBtn);
     }
@@ -210,28 +203,28 @@ public class PathCheckpointListWidget extends EntryListWidget<PathCheckpointList
       MinecraftClient client = PathCheckpointListWidget.this.client;
 
       int xOffset = entryWidth - this.deleteBtn.getWidth();
-      this.deleteBtn.setX(x + xOffset);
-      this.deleteBtn.setY(y + (entryHeight - this.deleteBtn.getHeight()) / 2);
+      this.deleteBtn.x = x + xOffset;
+      this.deleteBtn.y = y + (entryHeight - this.deleteBtn.getHeight()) / 2;
       this.deleteBtn.renderButton(matrices, mouseX, mouseY, tickDelta);
 
       xOffset -= this.moveUpBtn.getWidth() + 4;
-      this.moveUpBtn.setX(x + xOffset);
-      this.moveUpBtn.setY(y + (entryHeight - this.moveUpBtn.getHeight()) / 2);
+      this.moveUpBtn.x = x + xOffset;
+      this.moveUpBtn.y = y + (entryHeight - this.moveUpBtn.getHeight()) / 2;
       this.moveUpBtn.renderButton(matrices, mouseX, mouseY, tickDelta);
 
       xOffset -= this.moveDownBtn.getWidth() + 4;
-      this.moveDownBtn.setX(x + xOffset);
-      this.moveDownBtn.setY(y + (entryHeight - this.moveDownBtn.getHeight()) / 2);
+      this.moveDownBtn.x = x + xOffset;
+      this.moveDownBtn.y = y + (entryHeight - this.moveDownBtn.getHeight()) / 2;
       this.moveDownBtn.renderButton(matrices, mouseX, mouseY, tickDelta);
 
       xOffset -= this.stopBtn.getWidth() + 4;
-      this.stopBtn.setX(x + xOffset);
-      this.stopBtn.setY(y + (entryHeight - this.stopBtn.getHeight()) / 2);
+      this.stopBtn.x = x + xOffset;
+      this.stopBtn.y = y + (entryHeight - this.stopBtn.getHeight()) / 2;
       this.stopBtn.renderButton(matrices, mouseX, mouseY, tickDelta);
 
       xOffset -= this.ticksTextField.getWidth() + 6;
-      this.ticksTextField.setX(x + xOffset);
-      this.ticksTextField.setY(y + (entryHeight - this.ticksTextField.getHeight()) / 2);
+      this.ticksTextField.x = x + xOffset;
+      this.ticksTextField.y = y + (entryHeight - this.ticksTextField.getHeight()) / 2;
       this.ticksTextField.render(matrices, mouseX, mouseY, tickDelta);
 
       int textY = y + (entryHeight - client.textRenderer.fontHeight) / 2;
