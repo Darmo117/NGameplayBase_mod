@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_slab_bottom_passable"
+    },
+    "type=top": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_slab_top_passable"
+    },
+    "type=double": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_passable"
+    }
+  }
+}

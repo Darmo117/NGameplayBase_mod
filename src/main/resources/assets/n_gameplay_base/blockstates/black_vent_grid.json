@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,face=wall": {
+      "model": "n_gameplay_base:block/black_vent_grid_wall"
+    },
+    "facing=east,face=wall": {
+      "model": "n_gameplay_base:block/black_vent_grid_wall",
+      "y": 90
+    },
+    "facing=south,face=wall": {
+      "model": "n_gameplay_base:block/black_vent_grid_wall",
+      "y": 180
+    },
+    "facing=west,face=wall": {
+      "model": "n_gameplay_base:block/black_vent_grid_wall",
+      "y": 270
+    },
+
+    "facing=north,face=floor": {
+      "model": "n_gameplay_base:block/black_vent_grid_floor"
+    },
+    "facing=south,face=floor": {
+      "model": "n_gameplay_base:block/black_vent_grid_floor"
+    },
+    "facing=east,face=floor": {
+      "model": "n_gameplay_base:block/black_vent_grid_floor",
+      "y": 90
+    },
+    "facing=west,face=floor": {
+      "model": "n_gameplay_base:block/black_vent_grid_floor",
+      "y": 90
+    },
+
+    "facing=north,face=ceiling": {
+      "model": "n_gameplay_base:block/black_vent_grid_ceiling"
+    },
+    "facing=south,face=ceiling": {
+      "model": "n_gameplay_base:block/black_vent_grid_ceiling"
+    },
+    "facing=east,face=ceiling": {
+      "model": "n_gameplay_base:block/black_vent_grid_ceiling",
+      "y": 90
+    },
+    "facing=west,face=ceiling": {
+      "model": "n_gameplay_base:block/black_vent_grid_ceiling",
+      "y": 90
+    }
+  }
+}

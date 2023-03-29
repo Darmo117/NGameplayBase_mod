@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    {
+      "when": {"up": "true"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_post"}
+    },
+    {
+      "when": {"north": "low"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side"}
+    },
+    {
+      "when": {"east": "low"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side", "y": 90}
+    },
+    {
+      "when": {"south": "low"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side", "y": 180}
+    },
+    {
+      "when": {"west": "low"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side", "y": 270}
+    },
+    {
+      "when": {"north": "tall"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side_tall"}},
+    {
+      "when": {"east": "tall"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side_tall", "y": 90}
+    },
+    {
+      "when": {"south": "tall"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side_tall", "y": 180}
+    },
+    {
+      "when": {"west": "tall"},
+      "apply": {"model": "n_gameplay_base:block/black_wall_side_tall", "y": 270}
+    }
+  ]
+}

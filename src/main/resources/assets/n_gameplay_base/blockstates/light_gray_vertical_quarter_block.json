@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "position=north": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_middle",
+      "y": 90
+    },
+    "position=south": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_middle",
+      "y": 270
+    },
+    "position=west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_middle"
+    },
+    "position=east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_middle",
+      "y": 180
+    },
+    "position=north_west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_corner",
+      "y": 90
+    },
+    "position=south_west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_corner"
+    },
+    "position=north_east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_corner",
+      "y": 180
+    },
+    "position=south_east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_quarter_block_corner",
+      "y": 270
+    }
+  }
+}

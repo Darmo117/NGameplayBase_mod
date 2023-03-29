@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "n_gameplay_base:item/invisible_light_tweaker"
+  }
+}

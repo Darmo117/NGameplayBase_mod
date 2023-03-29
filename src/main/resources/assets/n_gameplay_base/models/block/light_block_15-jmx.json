@@ -1,0 +1,21 @@
+{
+  "parent": "jmx:block/2/jmx_cube_all",
+  "textures": {
+    "all": "n_gameplay_base:block/light_block_15"
+  },
+  "jmx": {
+    "textures": {
+      "jmx_tex_particle": "n_gameplay_base:block/light_block_15",
+      "layered_textures": [
+        { "jmx_tex_all": "n_gameplay_base:block/light_block_15" }
+      ]
+    },
+    "materials": {
+      "jmx_mat_all": {
+        "layers": [
+          { "layer": "solid", "emissive": true, "ambient_occlusion": true, "diffuse": false }
+        ]
+      }
+    }
+  }
+}

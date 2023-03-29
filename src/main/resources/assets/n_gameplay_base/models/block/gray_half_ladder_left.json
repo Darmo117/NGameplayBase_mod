@@ -1,0 +1,6 @@
+{
+  "parent": "n_gameplay_base:block/half_ladder_left",
+  "textures": {
+    "all": "n_gameplay_base:block/gray_block"
+  }
+}

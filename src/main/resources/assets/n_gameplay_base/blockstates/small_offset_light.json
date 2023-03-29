@@ -1,0 +1,51 @@
+{
+  "variants": {
+    "facing=north,face=wall": {
+      "model": "n_gameplay_base:block/small_offset_light_wall"
+    },
+    "facing=east,face=wall": {
+      "model": "n_gameplay_base:block/small_offset_light_wall",
+      "y": 90
+    },
+    "facing=south,face=wall": {
+      "model": "n_gameplay_base:block/small_offset_light_wall",
+      "y": 180
+    },
+    "facing=west,face=wall": {
+      "model": "n_gameplay_base:block/small_offset_light_wall",
+      "y": 270
+    },
+
+    "facing=north,face=floor": {
+      "model": "n_gameplay_base:block/small_offset_light_floor"
+    },
+    "facing=east,face=floor": {
+      "model": "n_gameplay_base:block/small_offset_light_floor",
+      "y": 90
+    },
+    "facing=south,face=floor": {
+      "model": "n_gameplay_base:block/small_offset_light_floor",
+      "y": 180
+    },
+    "facing=west,face=floor": {
+      "model": "n_gameplay_base:block/small_offset_light_floor",
+      "y": 270
+    },
+
+    "facing=north,face=ceiling": {
+      "model": "n_gameplay_base:block/small_offset_light_ceiling"
+    },
+    "facing=east,face=ceiling": {
+      "model": "n_gameplay_base:block/small_offset_light_ceiling",
+      "y": 90
+    },
+    "facing=south,face=ceiling": {
+      "model": "n_gameplay_base:block/small_offset_light_ceiling",
+      "y": 180
+    },
+    "facing=west,face=ceiling": {
+      "model": "n_gameplay_base:block/small_offset_light_ceiling",
+      "y": 270
+    }
+  }
+}

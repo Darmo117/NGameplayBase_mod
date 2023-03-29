@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "half=bottom,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_bottom"
+    },
+    "half=top,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_top"
+    },
+    "half=bottom,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_bottom",
+      "y": 90
+    },
+    "half=top,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_top",
+      "y": 90
+    },
+    "half=bottom,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_bottom",
+      "y": 180
+    },
+    "half=top,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_top",
+      "y": 180
+    },
+    "half=bottom,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_bottom",
+      "y": 270
+    },
+    "half=top,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_corner_top",
+      "y": 270
+    }
+  }
+}

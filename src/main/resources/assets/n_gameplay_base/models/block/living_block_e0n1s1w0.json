@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "n_gameplay_base:block/living_block_no_side_connections",
+    "down": "n_gameplay_base:block/living_block_no_side_connections",
+    "up": "n_gameplay_base:block/living_block_no_side_connections",
+    "north": "n_gameplay_base:block/living_block_no_side_connections",
+    "south": "n_gameplay_base:block/living_block_no_side_connections",
+    "west": "n_gameplay_base:block/living_block_both_sides_connections",
+    "east": "n_gameplay_base:block/living_block_both_sides_connections"
+  }
+}

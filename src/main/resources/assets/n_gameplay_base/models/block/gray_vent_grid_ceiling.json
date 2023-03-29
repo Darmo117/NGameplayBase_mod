@@ -1,0 +1,6 @@
+{
+  "parent": "n_gameplay_base:block/vent_grid_ceiling",
+  "textures": {
+    "all": "n_gameplay_base:block/gray_block"
+  }
+}

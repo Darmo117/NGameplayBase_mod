@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "n_gameplay_base:block/small_light"
+    },
+    "facing=east": {
+      "model": "n_gameplay_base:block/small_light",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "n_gameplay_base:block/small_light",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "n_gameplay_base:block/small_light",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "n_gameplay_base:block/small_light",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "n_gameplay_base:block/small_light",
+      "x": 90
+    }
+  }
+}

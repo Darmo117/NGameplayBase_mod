@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "type=north": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_vslab_solid"
+    },
+    "type=south": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 180,
+      "uvlock": true
+    },
+    "type=west": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 270,
+      "uvlock": true
+    },
+    "type=east": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_vslab_solid",
+      "y": 90,
+      "uvlock": true
+    },
+    "type=double": {
+      "model": "n_gameplay_base:block/light_gray_light_sensitive_barrier_solid"
+    }
+  }
+}

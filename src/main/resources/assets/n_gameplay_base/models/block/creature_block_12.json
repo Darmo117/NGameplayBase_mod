@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "n_gameplay_base:block/creature_block_12"
+  }
+}

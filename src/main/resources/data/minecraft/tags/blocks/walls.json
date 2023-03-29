@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "n_gameplay_base:black_wall",
+    "n_gameplay_base:gray_wall",
+    "n_gameplay_base:light_gray_wall",
+    "n_gameplay_base:white_wall"
+  ]
+}

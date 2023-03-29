@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "n_gameplay_base:block/light_gray_door_frame"
+    },
+    "facing=south": {
+      "model": "n_gameplay_base:block/light_gray_door_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "n_gameplay_base:block/light_gray_door_frame",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "n_gameplay_base:block/light_gray_door_frame",
+      "y": 90
+    }
+  }
+}

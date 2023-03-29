@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "east=false,north=false,south=false,west=false": {
+      "model": "n_gameplay_base:block/living_block_e0n0s0w0"
+    },
+    "east=false,north=false,south=false,west=true": {
+      "model": "n_gameplay_base:block/living_block_e0n0s0w1"
+    },
+    "east=false,north=false,south=true,west=false": {
+      "model": "n_gameplay_base:block/living_block_e0n0s1w0"
+    },
+    "east=false,north=false,south=true,west=true": {
+      "model": "n_gameplay_base:block/living_block_e0n0s1w1"
+    },
+    "east=false,north=true,south=false,west=false": {
+      "model": "n_gameplay_base:block/living_block_e0n1s0w0"
+    },
+    "east=false,north=true,south=false,west=true": {
+      "model": "n_gameplay_base:block/living_block_e0n1s0w1"
+    },
+    "east=false,north=true,south=true,west=false": {
+      "model": "n_gameplay_base:block/living_block_e0n1s1w0"
+    },
+    "east=false,north=true,south=true,west=true": {
+      "model": "n_gameplay_base:block/living_block_e0n1s1w1"
+    },
+    "east=true,north=false,south=false,west=false": {
+      "model": "n_gameplay_base:block/living_block_e1n0s0w0"
+    },
+    "east=true,north=false,south=false,west=true": {
+      "model": "n_gameplay_base:block/living_block_e1n0s0w1"
+    },
+    "east=true,north=false,south=true,west=false": {
+      "model": "n_gameplay_base:block/living_block_e1n0s1w0"
+    },
+    "east=true,north=false,south=true,west=true": {
+      "model": "n_gameplay_base:block/living_block_e1n0s1w1"
+    },
+    "east=true,north=true,south=false,west=false": {
+      "model": "n_gameplay_base:block/living_block_e1n1s0w0"
+    },
+    "east=true,north=true,south=false,west=true": {
+      "model": "n_gameplay_base:block/living_block_e1n1s0w1"
+    },
+    "east=true,north=true,south=true,west=false": {
+      "model": "n_gameplay_base:block/living_block_e1n1s1w0"
+    },
+    "east=true,north=true,south=true,west=true": {
+      "model": "n_gameplay_base:block/living_block_e1n1s1w1"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "n_gameplay_base:block/white_light_sensitive_barrier_slab_bottom_solid"
+    },
+    "type=top": {
+      "model": "n_gameplay_base:block/white_light_sensitive_barrier_slab_top_solid"
+    },
+    "type=double": {
+      "model": "n_gameplay_base:block/white_light_sensitive_barrier_solid"
+    }
+  }
+}

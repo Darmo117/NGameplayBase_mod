@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "n_gameplay_base:item/light_orb_tweaker"
+  }
+}

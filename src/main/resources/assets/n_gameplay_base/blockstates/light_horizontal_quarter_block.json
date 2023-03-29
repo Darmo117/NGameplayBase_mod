@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "position=north_middle": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle"
+    },
+    "position=south_middle": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle",
+      "y": 180
+    },
+    "position=west_middle": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle",
+      "y": 270
+    },
+    "position=east_middle": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle",
+      "y": 90
+    },
+
+    "position=x_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle_top"
+    },
+    "position=z_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle_top",
+      "y": 90
+    },
+
+    "position=x_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle_bottom"
+    },
+    "position=z_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_middle_bottom",
+      "y": 90
+    },
+
+    "position=north_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_top_corner"
+    },
+    "position=south_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_top_corner",
+      "y": 180
+    },
+    "position=west_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_top_corner",
+      "y": 270
+    },
+    "position=east_top": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_top_corner",
+      "y": 90
+    },
+
+    "position=north_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_bottom_corner"
+    },
+    "position=south_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_bottom_corner",
+      "y": 180
+    },
+    "position=west_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_bottom_corner",
+      "y": 270
+    },
+    "position=east_bottom": {
+      "model": "n_gameplay_base:block/light_horizontal_quarter_block_bottom_corner",
+      "y": 90
+    }
+  }
+}

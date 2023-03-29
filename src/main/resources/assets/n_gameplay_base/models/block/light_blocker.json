@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "n_gameplay_base:item/light_crossed",
+    "all": "n_gameplay_base:block/invisible"
+  }
+}

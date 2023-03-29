@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "n_gameplay_base:black_slab",
+    "n_gameplay_base:gray_slab",
+    "n_gameplay_base:light_gray_slab",
+    "n_gameplay_base:white_slab",
+    "n_gameplay_base:black_light_sensitive_barrier_slab",
+    "n_gameplay_base:black_light_sensitive_barrier_slab_passable",
+    "n_gameplay_base:gray_light_sensitive_barrier_slab",
+    "n_gameplay_base:gray_light_sensitive_barrier_slab_passable",
+    "n_gameplay_base:light_gray_light_sensitive_barrier_slab",
+    "n_gameplay_base:light_gray_light_sensitive_barrier_slab_passable",
+    "n_gameplay_base:white_light_sensitive_barrier_slab",
+    "n_gameplay_base:white_light_sensitive_barrier_slab_passable"
+  ]
+}

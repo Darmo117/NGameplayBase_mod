@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "n_gameplay_base:black_ladder",
+    "n_gameplay_base:gray_ladder",
+    "n_gameplay_base:light_gray_ladder",
+    "n_gameplay_base:white_ladder",
+    "n_gameplay_base:black_half_ladder",
+    "n_gameplay_base:gray_half_ladder",
+    "n_gameplay_base:light_gray_half_ladder",
+    "n_gameplay_base:white_half_ladder"
+  ]
+}

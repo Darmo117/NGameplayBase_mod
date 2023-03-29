@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "n_gameplay_base:block/white_block",
+    "top": "n_gameplay_base:block/white_block",
+    "bottom": "n_gameplay_base:block/white_block"
+  }
+}

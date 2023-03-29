@@ -1,0 +1,6 @@
+{
+  "parent": "n_gameplay_base:block/plain_door_top_open",
+  "textures": {
+    "all": "n_gameplay_base:block/light_gray_block"
+  }
+}

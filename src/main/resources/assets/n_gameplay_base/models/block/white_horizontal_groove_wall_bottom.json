@@ -1,0 +1,6 @@
+{
+	"parent": "n_gameplay_base:block/horizontal_groove_wall_bottom",
+	"textures": {
+		"all": "n_gameplay_base:block/white_block"
+	}
+}

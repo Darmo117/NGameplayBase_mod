@@ -1,0 +1,20 @@
+{
+  "type": "n_gameplay_base:dark_void",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "biome": "n_gameplay_base:void",
+      "lakes": false,
+      "features": false,
+      "structures": {
+        "stronghold": {
+          "distance": 0,
+          "count": 0,
+          "spread": 0
+        },
+        "structures": []
+      }
+    }
+  }
+}

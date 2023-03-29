@@ -1,0 +1,6 @@
+{
+  "parent": "n_gameplay_base:block/plain_door_partially_closed",
+  "textures": {
+    "all": "n_gameplay_base:block/gray_block"
+  }
+}

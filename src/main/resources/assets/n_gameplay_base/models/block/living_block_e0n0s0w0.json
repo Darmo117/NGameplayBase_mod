@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "n_gameplay_base:block/living_block_no_side_connections"
+  }
+}

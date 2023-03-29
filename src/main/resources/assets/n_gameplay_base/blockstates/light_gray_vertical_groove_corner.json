@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "half=bottom,side=left,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_bottom"
+    },
+    "half=bottom,side=right,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_bottom"
+    },
+    "half=top,side=left,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_top"
+    },
+    "half=top,side=right,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_top"
+    },
+
+    "half=bottom,side=left,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_bottom",
+      "y": 90
+    },
+    "half=bottom,side=right,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_bottom",
+      "y": 90
+    },
+    "half=top,side=left,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_top",
+      "y": 90
+    },
+    "half=top,side=right,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_top",
+      "y": 90
+    },
+
+    "half=bottom,side=left,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_bottom",
+      "y": 180
+    },
+    "half=bottom,side=right,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_bottom",
+      "y": 180
+    },
+    "half=top,side=left,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_top",
+      "y": 180
+    },
+    "half=top,side=right,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_top",
+      "y": 180
+    },
+
+    "half=bottom,side=left,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_bottom",
+      "y": 270
+    },
+    "half=bottom,side=right,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_bottom",
+      "y": 270
+    },
+    "half=top,side=left,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_left_top",
+      "y": 270
+    },
+    "half=top,side=right,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_vertical_groove_corner_right_top",
+      "y": 270
+    }
+  }
+}

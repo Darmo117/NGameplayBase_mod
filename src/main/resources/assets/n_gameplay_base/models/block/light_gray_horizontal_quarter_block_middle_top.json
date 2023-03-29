@@ -1,0 +1,6 @@
+{
+  "parent": "n_gameplay_base:block/horizontal_quarter_block_middle_top",
+  "textures": {
+    "all": "n_gameplay_base:block/light_gray_block"
+  }
+}

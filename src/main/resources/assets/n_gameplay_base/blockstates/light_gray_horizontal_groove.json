@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "position=floor,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_floor"
+    },
+    "position=wall_bottom,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_bottom"
+    },
+    "position=wall_top,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_top"
+    },
+    "position=ceiling,facing=north": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_ceiling"
+    },
+
+    "position=floor,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_floor",
+      "y": 90
+    },
+    "position=wall_bottom,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_bottom",
+      "y": 90
+    },
+    "position=wall_top,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_top",
+      "y": 90
+    },
+    "position=ceiling,facing=east": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_ceiling",
+      "y": 90
+    },
+
+    "position=floor,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_floor",
+      "y": 180
+    },
+    "position=wall_bottom,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_bottom",
+      "y": 180
+    },
+    "position=wall_top,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_top",
+      "y": 180
+    },
+    "position=ceiling,facing=south": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_ceiling",
+      "y": 180
+    },
+
+    "position=floor,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_floor",
+      "y": 270
+    },
+    "position=wall_bottom,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_bottom",
+      "y": 270
+    },
+    "position=wall_top,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_wall_top",
+      "y": 270
+    },
+    "position=ceiling,facing=west": {
+      "model": "n_gameplay_base:block/light_gray_horizontal_groove_ceiling",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "n_gameplay_base:block/corner_nct",
+	"textures": {
+		"all": "n_gameplay_base:block/black_block"
+	}
+}

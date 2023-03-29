@@ -1,0 +1,129 @@
+{
+  "variants": {
+    "vertical_position=top,position=north_west": {
+      "model": "n_gameplay_base:block/light_corner_nwt"
+    },
+    "vertical_position=middle,position=north_west": {
+      "model": "n_gameplay_base:block/light_corner_nwm"
+    },
+    "vertical_position=bottom,position=north_west": {
+      "model": "n_gameplay_base:block/light_corner_nwb"
+    },
+
+    "vertical_position=top,position=north": {
+      "model": "n_gameplay_base:block/light_corner_nct"
+    },
+    "vertical_position=middle,position=north": {
+      "model": "n_gameplay_base:block/light_corner_ncm"
+    },
+    "vertical_position=bottom,position=north": {
+      "model": "n_gameplay_base:block/light_corner_ncb"
+    },
+
+    "vertical_position=top,position=north_east": {
+      "model": "n_gameplay_base:block/light_corner_nwt",
+      "uvlock": true,
+      "y": 90
+    },
+    "vertical_position=middle,position=north_east": {
+      "model": "n_gameplay_base:block/light_corner_nwm",
+      "uvlock": true,
+      "y": 90
+    },
+    "vertical_position=bottom,position=north_east": {
+      "model": "n_gameplay_base:block/light_corner_nwb",
+      "uvlock": true,
+      "y": 90
+    },
+
+    "vertical_position=top,position=east": {
+      "model": "n_gameplay_base:block/light_corner_nct",
+      "uvlock": true,
+      "y": 90
+    },
+    "vertical_position=middle,position=east": {
+      "model": "n_gameplay_base:block/light_corner_ncm",
+      "uvlock": true,
+      "y": 90
+    },
+    "vertical_position=bottom,position=east": {
+      "model": "n_gameplay_base:block/light_corner_ncb",
+      "uvlock": true,
+      "y": 90
+    },
+
+    "vertical_position=top,position=south_east": {
+      "model": "n_gameplay_base:block/light_corner_nwt",
+      "uvlock": true,
+      "y": 180
+    },
+    "vertical_position=middle,position=south_east": {
+      "model": "n_gameplay_base:block/light_corner_nwm",
+      "uvlock": true,
+      "y": 180
+    },
+    "vertical_position=bottom,position=south_east": {
+      "model": "n_gameplay_base:block/light_corner_nwb",
+      "uvlock": true,
+      "y": 180
+    },
+
+    "vertical_position=top,position=south": {
+      "model": "n_gameplay_base:block/light_corner_nct",
+      "uvlock": true,
+      "y": 180
+    },
+    "vertical_position=middle,position=south": {
+      "model": "n_gameplay_base:block/light_corner_ncm",
+      "uvlock": true,
+      "y": 180
+    },
+    "vertical_position=bottom,position=south": {
+      "model": "n_gameplay_base:block/light_corner_ncb",
+      "uvlock": true,
+      "y": 180
+    },
+
+    "vertical_position=top,position=south_west": {
+      "model": "n_gameplay_base:block/light_corner_nwt",
+      "uvlock": true,
+      "y": 270
+    },
+    "vertical_position=middle,position=south_west": {
+      "model": "n_gameplay_base:block/light_corner_nwm",
+      "uvlock": true,
+      "y": 270
+    },
+    "vertical_position=bottom,position=south_west": {
+      "model": "n_gameplay_base:block/light_corner_nwb",
+      "uvlock": true,
+      "y": 270
+    },
+
+    "vertical_position=top,position=west": {
+      "model": "n_gameplay_base:block/light_corner_nct",
+      "uvlock": true,
+      "y": 270
+    },
+    "vertical_position=middle,position=west": {
+      "model": "n_gameplay_base:block/light_corner_ncm",
+      "uvlock": true,
+      "y": 270
+    },
+    "vertical_position=bottom,position=west": {
+      "model": "n_gameplay_base:block/light_corner_ncb",
+      "uvlock": true,
+      "y": 270
+    },
+
+    "vertical_position=top,position=center": {
+      "model": "n_gameplay_base:block/light_corner_ct"
+    },
+    "vertical_position=middle,position=center": {
+      "model": "n_gameplay_base:block/light_corner_cm"
+    },
+    "vertical_position=bottom,position=center": {
+      "model": "n_gameplay_base:block/light_corner_cb"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "n_gameplay_base:block/vertical_slab",
+  "textures": {
+    "side": "n_gameplay_base:block/black_block",
+    "top": "n_gameplay_base:block/black_block",
+    "bottom": "n_gameplay_base:block/black_block"
+  }
+}

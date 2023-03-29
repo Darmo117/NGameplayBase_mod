@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "n_gameplay_base:block/white_post_horizontal",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "n_gameplay_base:block/white_post"
+    },
+    "axis=z": {
+      "model": "n_gameplay_base:block/white_post_horizontal"
+    }
+  }
+}

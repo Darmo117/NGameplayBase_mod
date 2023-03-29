@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "n_gameplay_base",
+  "version": "${version}",
+  "name": "N. Gameplay Base",
+  "description": "Base mod for NaissanceE-inspired blocks and dimensions",
+  "authors": [
+    "Darmo"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Darmo117/NGameplayBase",
+    "sources": "https://github.com/Darmo117/NGameplayBase"
+  },
+  "license": "GPLv3",
+  "icon": "assets/n_gameplay_base/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.darmo_creations.n_gameplay_base.NGameplayBase"
+    ],
+    "client": [
+      "net.darmo_creations.n_gameplay_base.ClientInitializer"
+    ]
+  },
+  "mixins": [
+    "disable_experimental_settings_warning.mixin.json",
+    "disable_hud_bars_in_adventure_mode.mixin.json",
+    "disable_hand_rendering_in_adventure_mode.mixin.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.18",
+    "minecraft": "~1.19.3",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
