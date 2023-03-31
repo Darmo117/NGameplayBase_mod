@@ -12,13 +12,19 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -29,22 +35,40 @@ import java.util.Optional;
  * @see LightOrbControllerBlockEntity
  */
 public class LightOrbControllerBlock extends BlockWithEntity implements OperatorBlock, ModBlock {
+  public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;
+
   public LightOrbControllerBlock() {
     // Same settings as command block
     super(ModBlock.getSettings(FabricBlockSettings.of(Material.METAL, MapColor.WHITE).sounds(BlockSoundGroup.METAL)));
+    this.setDefaultState(this.getStateManager().getDefaultState().with(TRIGGERED, false));
   }
 
-  @SuppressWarnings("deprecation")
   @Override
-  public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-    super.onBlockAdded(state, world, pos, oldState, notify);
-    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos).ifPresent(LightOrbControllerBlockEntity::init);
+  public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+    super.onPlaced(world, pos, state, placer, itemStack);
+    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
+        .ifPresent(LightOrbControllerBlockEntity::init);
   }
 
   @Override
   public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos).ifPresent(LightOrbControllerBlockEntity::onRemoved);
+    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
+        .ifPresent(LightOrbControllerBlockEntity::onRemoved);
     super.onBreak(world, pos, state, player);
+  }
+
+  @Override
+  @SuppressWarnings("deprecation")
+  public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+    boolean powered = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
+    boolean triggered = state.get(TRIGGERED);
+    if (powered && !triggered) {
+      Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
+          .ifPresent(LightOrbControllerBlockEntity::resetOrb);
+      world.setBlockState(pos, state.with(TRIGGERED, true), NOTIFY_ALL);
+    } else if (!powered && triggered) {
+      world.setBlockState(pos, state.with(TRIGGERED, false), NOTIFY_ALL);
+    }
   }
 
   @SuppressWarnings("deprecation")
@@ -71,6 +95,11 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
   @Override
   public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
     return new LightOrbControllerBlockEntity(pos, state);
+  }
+
+  @Override
+  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    builder.add(TRIGGERED);
   }
 
   @Override
