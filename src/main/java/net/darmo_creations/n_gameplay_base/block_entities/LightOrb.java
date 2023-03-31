@@ -9,10 +9,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Optional;
@@ -249,6 +252,11 @@ public class LightOrb {
       if (this.waitForPlayer && this.controller.isActive() && this.isStopped() && this.timeToWait == 0) {
         this.updateMotion(nextCheckpoint);
         this.waitForPlayer = false;
+        World world = this.controller.getWorld();
+        if (world != null) {
+          world.playSound(null, new BlockPos(this.getPosition()),
+              SoundEvents.ENTITY_ALLAY_ITEM_TAKEN, SoundCategory.AMBIENT, 1, 1);
+        }
       }
     });
   }
