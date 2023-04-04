@@ -30,5 +30,12 @@ public interface Colored extends ModBlock {
     return false;
   }
 
+  /**
+   * Get the block state of the variant of this block with the given color.
+   *
+   * @param state Current block state.
+   * @param color New block color.
+   * @return Block state of the block variant with the given color.
+   */
   BlockState getBlockStateForColor(BlockState state, BlockColor color);
 }
