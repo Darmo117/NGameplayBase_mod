@@ -54,6 +54,13 @@ public class ColoredDoorFrame extends WaterloggableHorizontalFacingBlock impleme
     return this.color;
   }
 
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.COLORED_DOOR_FRAMES.get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
   @SuppressWarnings("deprecation")
   @Override
   public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

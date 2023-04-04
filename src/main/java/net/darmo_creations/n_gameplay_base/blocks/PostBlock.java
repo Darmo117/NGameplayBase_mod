@@ -19,6 +19,11 @@ public class PostBlock extends AbstractPostBlock implements Colored {
   }
 
   @Override
+  protected ColoredBlockMap<? extends AbstractPostBlock> getVariants() {
+    return ModBlocks.COLORED_POSTS;
+  }
+
+  @Override
   public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
     return switch (state.get(AXIS)) {
       case X -> SHAPE_X;

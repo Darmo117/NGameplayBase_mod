@@ -214,6 +214,10 @@
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
   "commands.setpassable.failed": "No barrier blocks changed.",
   "commands.setpassable.success": "Changed state of %d barrier block(s).",
+  "commands.setcolor.too_big": "Too many blocks (%d < %d)!",
+  "commands.setcolor.invalid_value": "Invalid color!",
+  "commands.setcolor.failed": "No blocks changed.",
+  "commands.setcolor.success": "Changed color of %d block(s).",
 
   "gui.n_gameplay_base.light_orb_controller.title": "Light Orb Controller",
   "gui.n_gameplay_base.light_orb_controller.status_button.active": "Active",

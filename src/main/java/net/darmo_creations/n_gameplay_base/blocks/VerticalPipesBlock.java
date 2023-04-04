@@ -1,6 +1,7 @@
 package net.darmo_creations.n_gameplay_base.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.shape.VoxelShape;
@@ -34,5 +35,12 @@ public class VerticalPipesBlock extends WaterloggableHorizontalFacingBlock imple
   @Override
   public BlockColor getColor() {
     return this.color;
+  }
+
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.VERTICAL_PIPES.get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
   }
 }

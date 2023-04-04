@@ -41,6 +41,17 @@ public class LightSensitiveBarrierVerticalSlabBlock extends VerticalSlabBlock
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    ColoredBlockMap<LightSensitiveBarrierVerticalSlabBlock> m =
+        this.passable
+            ? ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS_PASSABLE
+            : ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIER_VSLABS;
+    return m.get(color).getDefaultState()
+        .with(TYPE, state.get(TYPE))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  @Override
   public void toggleState(BlockState state, World world, BlockPos pos) {
     world.setBlockState(pos, this.counterpartBlock.getDefaultState().with(TYPE, state.get(TYPE)));
   }

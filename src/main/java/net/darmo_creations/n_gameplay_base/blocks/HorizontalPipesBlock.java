@@ -54,6 +54,14 @@ public class HorizontalPipesBlock extends WaterloggableWallMountedBlock implemen
     return this.color;
   }
 
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.HORIZONTAL_PIPES.get(color).getDefaultState()
+        .with(FACE, state.get(FACE))
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
   @SuppressWarnings("deprecation")
   @Override
   public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

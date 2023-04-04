@@ -30,6 +30,17 @@ public class LadderBlockWithoutSupport extends LadderBlock implements Colored {
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return this.getVariants().get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  protected ColoredBlockMap<? extends LadderBlockWithoutSupport> getVariants() {
+    return ModBlocks.COLORED_LADDERS;
+  }
+
+  @Override
   public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
     return true;
   }

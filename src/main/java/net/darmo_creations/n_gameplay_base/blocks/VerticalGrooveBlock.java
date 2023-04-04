@@ -96,4 +96,12 @@ public class VerticalGrooveBlock extends WaterloggableHorizontalFacingBlock impl
   public BlockColor getColor() {
     return this.color;
   }
+
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.VERTICAL_GROOVE_BLOCKS.get(color).getDefaultState()
+        .with(SIDE, state.get(SIDE))
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
 }

@@ -42,6 +42,17 @@ public class LightSensitiveBarrierSlabBlock extends SlabBlock
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    ColoredBlockMap<LightSensitiveBarrierSlabBlock> m =
+        this.passable
+            ? ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIER_SLABS_PASSABLE
+            : ModBlocks.COLORED_LIGHT_SENSITIVE_BARRIER_SLABS;
+    return m.get(color).getDefaultState()
+        .with(TYPE, state.get(TYPE))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  @Override
   public boolean isPassable() {
     return this.passable;
   }

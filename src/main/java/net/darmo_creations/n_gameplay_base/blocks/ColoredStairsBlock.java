@@ -1,6 +1,7 @@
 package net.darmo_creations.n_gameplay_base.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -25,5 +26,13 @@ public class ColoredStairsBlock extends StairsBlock implements Colored {
   @Override
   public BlockColor getColor() {
     return this.color;
+  }
+
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.COLORED_STAIRS.get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(HALF, state.get(HALF))
+        .with(SHAPE, state.get(SHAPE));
   }
 }

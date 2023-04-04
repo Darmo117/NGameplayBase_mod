@@ -54,6 +54,14 @@ public class VentGridBlock extends WaterloggableWallMountedBlock implements Colo
     return this.color;
   }
 
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.VENT_GRID_BLOCKS.get(color).getDefaultState()
+        .with(FACE, state.get(FACE))
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
   @SuppressWarnings("deprecation")
   @Override
   public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {

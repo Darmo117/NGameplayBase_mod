@@ -126,6 +126,14 @@ public class HorizontalGrooveBlock extends WaterloggableHorizontalFacingBlock im
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.HORIZONTAL_GROOVE_BLOCKS.get(color).getDefaultState()
+        .with(POSITION, state.get(POSITION))
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
     BlockState state = super.getPlacementState(ctx);
     Vec3d hitPos = ctx.getHitPos();

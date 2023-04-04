@@ -1,6 +1,7 @@
 package net.darmo_creations.n_gameplay_base.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 
 /**
@@ -22,5 +23,12 @@ public class ColoredVerticalSlabBlock extends VerticalSlabBlock implements Color
   @Override
   public BlockColor getColor() {
     return this.color;
+  }
+
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.COLORED_VERTICAL_SLABS.get(color).getDefaultState()
+        .with(TYPE, state.get(TYPE))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
   }
 }

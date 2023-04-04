@@ -119,6 +119,14 @@ public class HorizontalGrooveCornerBlock extends WaterloggableHorizontalFacingBl
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.HORIZONTAL_GROOVE_CORNER_BLOCKS.get(color).getDefaultState()
+        .with(HALF, state.get(HALF))
+        .with(FACING, state.get(FACING))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
     BlockState state = super.getPlacementState(ctx);
     double yHit = ctx.getHitPos().y - ctx.getBlockPos().getY();

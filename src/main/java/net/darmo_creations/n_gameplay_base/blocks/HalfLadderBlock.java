@@ -42,6 +42,17 @@ public class HalfLadderBlock extends LadderBlockWithoutSupport implements Colore
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return super.getBlockStateForColor(state, color)
+        .with(SIDE, state.get(SIDE));
+  }
+
+  @Override
+  protected ColoredBlockMap<? extends LadderBlockWithoutSupport> getVariants() {
+    return ModBlocks.COLORED_HALF_LADDERS;
+  }
+
+  @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
     super.appendProperties(builder.add(SIDE));
   }

@@ -1,6 +1,7 @@
 package net.darmo_creations.n_gameplay_base.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -15,5 +16,12 @@ public class ColoredHorizontalQuarterBlock extends HorizontalQuarterBlock implem
   @Override
   public BlockColor getColor() {
     return this.color;
+  }
+
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.COLORED_HORIZONTAL_QUARTER_BLOCKS.get(color).getDefaultState()
+        .with(POSITION, state.get(POSITION))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
   }
 }

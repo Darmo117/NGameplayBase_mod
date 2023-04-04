@@ -3,7 +3,9 @@ package net.darmo_creations.n_gameplay_base;
 import net.darmo_creations.n_gameplay_base.block_entities.ModBlockEntities;
 import net.darmo_creations.n_gameplay_base.blocks.BlockColor;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
+import net.darmo_creations.n_gameplay_base.commands.ModArgumentTypes;
 import net.darmo_creations.n_gameplay_base.commands.PushCommand;
+import net.darmo_creations.n_gameplay_base.commands.SetColorCommand;
 import net.darmo_creations.n_gameplay_base.commands.SetPassableCommand;
 import net.darmo_creations.n_gameplay_base.dimensions.VoidDimensionEffects;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
@@ -44,8 +46,10 @@ public class NGameplayBase implements ModInitializer {
 
   public static final Identifier VOID_DIMENSION_EFFECTS_KEY = new Identifier(MOD_ID, "void");
 
+  @SuppressWarnings("UnstableApiUsage")
   @Override
   public void onInitialize() {
+    ModArgumentTypes.registerAll();
     ModBlocks.init();
     ModItems.init();
     ModBlockEntities.init();
@@ -71,9 +75,10 @@ public class NGameplayBase implements ModInitializer {
    * Registers all custom commands.
    */
   private void registerCommands() {
-    CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment)
-        -> SetPassableCommand.register(dispatcher));
-    CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment)
-        -> PushCommand.register(dispatcher));
+    CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+      SetPassableCommand.register(dispatcher);
+      SetColorCommand.register(dispatcher);
+      PushCommand.register(dispatcher);
+    });
   }
 }

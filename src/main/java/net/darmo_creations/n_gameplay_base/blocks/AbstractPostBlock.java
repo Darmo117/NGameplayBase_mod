@@ -36,6 +36,15 @@ public abstract class AbstractPostBlock extends PillarBlock implements Colored, 
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return this.getVariants().get(color).getDefaultState()
+        .with(AXIS, state.get(AXIS))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  protected abstract ColoredBlockMap<? extends AbstractPostBlock> getVariants();
+
+  @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
     super.appendProperties(builder.add(WATERLOGGED));
   }

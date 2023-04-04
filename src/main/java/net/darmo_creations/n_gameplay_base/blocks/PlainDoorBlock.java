@@ -42,6 +42,20 @@ public class PlainDoorBlock extends DoorBlock implements Colored {
     return this.color;
   }
 
+  @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    ColoredBlockMap<PlainDoorBlock> m =
+        this.fullyCloses
+            ? ModBlocks.COLORED_DOORS
+            : ModBlocks.COLORED_PARTIAL_DOORS;
+    return m.get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(OPEN, state.get(OPEN))
+        .with(HINGE, state.get(HINGE))
+        .with(POWERED, state.get(POWERED))
+        .with(HALF, state.get(HALF));
+  }
+
   @SuppressWarnings("deprecation")
   @Override
   public BlockRenderType getRenderType(BlockState state) {

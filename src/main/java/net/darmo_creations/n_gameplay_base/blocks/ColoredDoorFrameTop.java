@@ -52,6 +52,14 @@ public class ColoredDoorFrameTop extends WaterloggableHorizontalFacingBlock impl
   }
 
   @Override
+  public BlockState getBlockStateForColor(BlockState state, BlockColor color) {
+    return ModBlocks.COLORED_DOOR_FRAME_TOPS.get(color).getDefaultState()
+        .with(FACING, state.get(FACING))
+        .with(LAMP, state.get(LAMP))
+        .with(WATERLOGGED, state.get(WATERLOGGED));
+  }
+
+  @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
     super.appendProperties(builder.add(LAMP));
   }
