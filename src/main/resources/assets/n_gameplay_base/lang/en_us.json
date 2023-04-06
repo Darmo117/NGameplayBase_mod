@@ -234,5 +234,7 @@
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button.inactive": "Pass",
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.delete_button": "X",
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_up_button": "/\\",
-  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button": "\\/"
+  "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button": "\\/",
+
+  "block.minecraft.bed.not_possible_here": "§oStrangely, you don’t feel tired…"
 }

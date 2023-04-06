@@ -25,7 +25,8 @@
   "mixins": [
     "disable_experimental_settings_warning.mixin.json",
     "disable_hud_bars_in_adventure_mode.mixin.json",
-    "disable_hand_rendering_in_adventure_mode.mixin.json"
+    "disable_hand_rendering_in_adventure_mode.mixin.json",
+    "add_message_to_sleep_failure_reason.mixin.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.18",
