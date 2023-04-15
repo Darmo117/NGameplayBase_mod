@@ -8,8 +8,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 import java.math.BigDecimal;
@@ -48,7 +47,7 @@ public class LightOrbControllerScreen extends Screen {
    * @param blockEntity The block entity.
    */
   public LightOrbControllerScreen(LightOrbControllerBlockEntity blockEntity) {
-    super(MutableText.of(new TranslatableTextContent("gui.n_gameplay_base.light_orb_controller.title")));
+    super(Text.translatable("gui.n_gameplay_base.light_orb_controller.title"));
     this.blockEntity = blockEntity;
     this.active = blockEntity.isActive();
     this.loops = blockEntity.loops();
@@ -72,45 +71,45 @@ public class LightOrbControllerScreen extends Screen {
 
     this.statusBtn = new ButtonWidget(
         leftButtonX, topY, btnW, BUTTON_HEIGHT,
-        MutableText.of(new TranslatableTextContent(
+        Text.translatable(
             "gui.n_gameplay_base.light_orb_controller.status_button."
-                + (this.active ? "active" : "inactive"))
+                + (this.active ? "active" : "inactive")
         ),
         button -> {
           this.active = !this.active;
-          this.statusBtn.setMessage(MutableText.of(new TranslatableTextContent(
+          this.statusBtn.setMessage(Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.status_button."
                   + (this.active ? "active" : "inactive")
-          )));
+          ));
         }
     );
 
     this.loopBtn = new ButtonWidget(
         middle - btnW / 2, topY, btnW, BUTTON_HEIGHT,
-        MutableText.of(new TranslatableTextContent(
+        Text.translatable(
             "gui.n_gameplay_base.light_orb_controller.loop_button."
-                + (this.loops ? "active" : "inactive"))
+                + (this.loops ? "active" : "inactive")
         ),
         button -> {
           this.loops = !this.loops;
-          this.loopBtn.setMessage(MutableText.of(new TranslatableTextContent(
+          this.loopBtn.setMessage(Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.loop_button."
                   + (this.loops ? "active" : "inactive")
-          )));
+          ));
         }
     );
 
     this.invisibilityBtn = new ButtonWidget(
         rightButtonX + BUTTON_WIDTH - btnW, topY, btnW, BUTTON_HEIGHT,
-        MutableText.of(new TranslatableTextContent(
+        Text.translatable(
             "gui.n_gameplay_base.light_orb_controller.invisibility_button."
-                + (this.invisible ? "active" : "inactive"))
+                + (this.invisible ? "active" : "inactive")
         ),
         button -> {
           this.invisible = !this.invisible;
-          this.invisibilityBtn.setMessage(MutableText.of(new TranslatableTextContent(
+          this.invisibilityBtn.setMessage(Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.invisibility_button."
-                  + (this.invisible ? "active" : "inactive"))
+                  + (this.invisible ? "active" : "inactive")
           ));
         }
     );
@@ -122,10 +121,10 @@ public class LightOrbControllerScreen extends Screen {
         BUTTON_WIDTH, BUTTON_HEIGHT,
         0, 15, this.lightLevel,
         value -> this.lightLevel = value,
-        value -> MutableText.of(new TranslatableTextContent(
+        value -> Text.translatable(
             "gui.n_gameplay_base.light_orb_controller.light_level_slider",
             value
-        ))
+        )
     );
 
     SliderWidget speedSlider = new DoubleSliderWidget(
@@ -133,10 +132,10 @@ public class LightOrbControllerScreen extends Screen {
         BUTTON_WIDTH, BUTTON_HEIGHT,
         0, 1, this.speed,
         value -> this.speed = this.getTrueSpeedValue(value),
-        value -> MutableText.of(new TranslatableTextContent(
+        value -> Text.translatable(
             "gui.n_gameplay_base.light_orb_controller.speed_slider",
             this.getTrueSpeedValue(value)
-        ))
+        )
     );
 
     topY += BUTTON_HEIGHT + 2 * MARGIN + fontHeight;
@@ -144,13 +143,13 @@ public class LightOrbControllerScreen extends Screen {
 
     ButtonWidget doneBtn = new ButtonWidget(
         leftButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT,
-        MutableText.of(new TranslatableTextContent("gui.done")),
+        Text.translatable("gui.done"),
         b -> this.onDone()
     );
 
     ButtonWidget cancelBtn = new ButtonWidget(
         rightButtonX, bottomY, BUTTON_WIDTH, BUTTON_HEIGHT,
-        MutableText.of(new TranslatableTextContent("gui.cancel")),
+        Text.translatable("gui.cancel"),
         button -> this.client.setScreen(null)
     );
 
@@ -225,8 +224,9 @@ public class LightOrbControllerScreen extends Screen {
     drawCenteredText(
         matrices,
         this.textRenderer,
-        MutableText.of(new TranslatableTextContent(
-            "gui.n_gameplay_base.light_orb_controller.checkpoint_list.title", this.checkpointList.children().size())
+        Text.translatable(
+            "gui.n_gameplay_base.light_orb_controller.checkpoint_list.title",
+            this.checkpointList.children().size()
         ),
         middle,
         this.checkpointListY - MARGIN - fontHeight,

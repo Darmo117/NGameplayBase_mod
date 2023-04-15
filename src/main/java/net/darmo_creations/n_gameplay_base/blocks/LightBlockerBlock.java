@@ -11,6 +11,7 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -45,7 +46,7 @@ public class LightBlockerBlock extends WaterloggableHorizontalFacingBlock {
   }
 
   @Override
-  public void randomDisplayTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
+  public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
     // Display particle whenever player is holding this block, as with minecraft:barrier and minecraft:light
     ClientPlayerEntity player = MinecraftClient.getInstance().player;
     if (player != null && player.isHolding(this.asItem())) {

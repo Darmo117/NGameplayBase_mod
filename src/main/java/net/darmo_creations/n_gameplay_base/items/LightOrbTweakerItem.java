@@ -12,10 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -65,10 +63,10 @@ public class LightOrbTweakerItem extends Item {
             tag.put(CONTROLLER_POS_TAG_KEY, NbtHelper.fromBlockPos(be.get().getPos()));
             player.getStackInHand(hand).setNbt(tag);
             ServerNetworkUtils.sendMessage(world, player,
-                MutableText.of(new TranslatableTextContent(
+                Text.translatable(
                     "item.n_gameplay_base.light_orb_tweaker.action_bar.controller_selected",
                     Utils.blockPosToString(pos)
-                )).setStyle(Style.EMPTY.withColor(Formatting.YELLOW)), true);
+                ).setStyle(Style.EMPTY.withColor(Formatting.YELLOW)), true);
             return ActionResult.SUCCESS;
           }
         }
@@ -83,15 +81,15 @@ public class LightOrbTweakerItem extends Item {
               success = nbRemoved != 0;
               if (nbRemoved == 0) {
                 ServerNetworkUtils.sendMessage(world, player,
-                    MutableText.of(new TranslatableTextContent(
+                    Text.translatable(
                         "item.n_gameplay_base.light_orb_tweaker.action_bar.cannot_remove_checkpoint"
-                    )).setStyle(Style.EMPTY.withColor(Formatting.RED)), true);
+                    ).setStyle(Style.EMPTY.withColor(Formatting.RED)), true);
               } else {
                 ServerNetworkUtils.sendMessage(world, player,
-                    MutableText.of(new TranslatableTextContent(
+                    Text.translatable(
                         "item.n_gameplay_base.light_orb_tweaker.action_bar.checkpoints_removed",
                         nbRemoved
-                    )).setStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
+                    ).setStyle(Style.EMPTY.withColor(Formatting.GREEN)), true);
               }
             } else {
               success = false;
@@ -125,14 +123,14 @@ public class LightOrbTweakerItem extends Item {
     super.appendTooltip(stack, world, tooltip, context);
     Optional<LightOrbControllerBlockEntity> controller = getControllerTileEntity(stack, world);
     if (controller.isPresent()) {
-      tooltip.add(MutableText.of(new TranslatableTextContent(
+      tooltip.add(Text.translatable(
           "item.n_gameplay_base.light_orb_tweaker.tooltip.selection",
           Utils.blockPosToString(controller.get().getPos())
-      )).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+      ).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
     } else {
-      tooltip.add(MutableText.of(new TranslatableTextContent(
+      tooltip.add(Text.translatable(
           "item.n_gameplay_base.light_orb_tweaker.tooltip.no_selection"
-      )).setStyle(Style.EMPTY.withColor(Formatting.GRAY).withItalic(true)));
+      ).setStyle(Style.EMPTY.withColor(Formatting.GRAY).withItalic(true)));
     }
   }
 

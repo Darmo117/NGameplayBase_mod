@@ -23,6 +23,7 @@ public class LightOrbControllerDataPacket implements Packet {
   private final double speed;
   private final List<PathCheckpoint> checkpoints;
 
+  @SuppressWarnings("unused") // Used by PacketRegistry class
   public LightOrbControllerDataPacket(final PacketByteBuf buf) {
     this.pos = buf.readBlockPos();
     this.active = buf.readBoolean();

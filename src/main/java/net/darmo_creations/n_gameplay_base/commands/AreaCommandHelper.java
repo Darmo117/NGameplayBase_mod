@@ -10,8 +10,7 @@ import net.minecraft.command.argument.BlockPosArgumentType;
 import net.minecraft.data.client.BlockStateVariantMap;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 
@@ -49,14 +48,12 @@ class AreaCommandHelper<T> {
   ) {
     this.commandName = commandName;
     this.tooBigException =
-        new Dynamic2CommandExceptionType((maxCount, count) -> MutableText.of(new TranslatableTextContent(
-            "commands.%s.too_big".formatted(commandName), maxCount, count)));
+        new Dynamic2CommandExceptionType((maxCount, count) ->
+            Text.translatable("commands.%s.too_big".formatted(commandName), maxCount, count));
     this.failedException =
-        new SimpleCommandExceptionType(MutableText.of(new TranslatableTextContent(
-            "commands.%s.failed".formatted(commandName))));
+        new SimpleCommandExceptionType(Text.translatable("commands.%s.failed".formatted(commandName)));
     this.invalidValueException =
-        new SimpleCommandExceptionType(MutableText.of(new TranslatableTextContent(
-            "commands.%s.invalid_value".formatted(commandName))));
+        new SimpleCommandExceptionType(Text.translatable("commands.%s.invalid_value".formatted(commandName)));
     this.valueProvider = valueProvider;
     this.applyChanges = applyChanges;
   }
@@ -97,7 +94,7 @@ class AreaCommandHelper<T> {
       throw this.failedException.create();
     }
 
-    source.sendFeedback(MutableText.of(new TranslatableTextContent("commands.%s.success".formatted(this.commandName), nb)), true);
+    source.sendFeedback(Text.translatable("commands.%s.success".formatted(this.commandName), nb), true);
     return nb;
   }
 }

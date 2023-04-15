@@ -1,14 +1,11 @@
 package net.darmo_creations.n_gameplay_base;
 
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -30,19 +27,6 @@ public final class Utils {
       return Optional.of(blockEntityClass.cast(be));
     }
     return Optional.empty();
-  }
-
-  /**
-   * Checks whether the given player holds any of the given items in at least one of its hands.
-   *
-   * @param player The player.
-   * @param items  The items.
-   * @return True if the player holds at least one of the items in one or both of its hands, false otherwise.
-   */
-  public static boolean playerHoldsAnyItem(PlayerEntity player, Item... items) {
-    return Arrays.stream(items).anyMatch(
-        item -> player.getMainHandStack().getItem() == item || player.getOffHandStack().getItem() == item
-    );
   }
 
   /**

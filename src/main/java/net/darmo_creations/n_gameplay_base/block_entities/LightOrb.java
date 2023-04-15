@@ -3,7 +3,6 @@ package net.darmo_creations.n_gameplay_base.block_entities;
 import net.darmo_creations.n_gameplay_base.Utils;
 import net.darmo_creations.n_gameplay_base.blocks.LightOrbSourceBlock;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -272,14 +271,16 @@ public class LightOrb {
    * Place a light block at the given position.
    */
   private void placeLight(BlockPos pos) {
-    //noinspection ConstantConditions
-    BlockState blockState = this.controller.getWorld().getBlockState(pos);
-    Block block = blockState.getBlock();
+    World world = this.controller.getWorld();
+    if (world == null) {
+      return;
+    }
+    BlockState blockState = world.getBlockState(pos);
     int lightLevel = this.controller.getLightLevel();
     if (blockState.isAir() ||
-        block instanceof LightOrbSourceBlock
+        blockState.getBlock() instanceof LightOrbSourceBlock
             && blockState.get(LightOrbSourceBlock.LIGHT_LEVEL) != lightLevel) {
-      this.controller.getWorld().setBlockState(pos, ModBlocks.LIGHT_ORB_SOURCE.getDefaultState()
+      world.setBlockState(pos, ModBlocks.LIGHT_ORB_SOURCE.getDefaultState()
           .with(LightOrbSourceBlock.LIGHT_LEVEL, lightLevel));
     }
   }
@@ -288,9 +289,9 @@ public class LightOrb {
    * Remove light block at given position.
    */
   private void removeLight(BlockPos pos) {
-    //noinspection ConstantConditions
-    if (this.controller.getWorld().getBlockState(pos).getBlock() == ModBlocks.LIGHT_ORB_SOURCE) {
-      this.controller.getWorld().setBlockState(pos, Blocks.AIR.getDefaultState());
+    World world = this.controller.getWorld();
+    if (world != null && world.getBlockState(pos).getBlock() == ModBlocks.LIGHT_ORB_SOURCE) {
+      world.setBlockState(pos, Blocks.AIR.getDefaultState());
     }
   }
 

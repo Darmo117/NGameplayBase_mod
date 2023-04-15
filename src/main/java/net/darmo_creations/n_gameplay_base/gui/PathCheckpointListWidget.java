@@ -10,8 +10,7 @@ import net.minecraft.client.gui.widget.EntryListWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.TranslatableTextContent;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,8 +120,11 @@ public class PathCheckpointListWidget extends EntryListWidget<PathCheckpointList
     public GuiEntry(PathCheckpoint checkpoint) {
       this.checkpoint = checkpoint;
 
-      this.ticksTextField = new TextFieldWidget(PathCheckpointListWidget.this.client.textRenderer, 0, 0, 30, 20,
-          MutableText.of(new TranslatableTextContent("gui.n_gameplay_base.light_orb_controllerr.checkpoint_list.entry.wait_field")));
+      this.ticksTextField = new TextFieldWidget(
+          PathCheckpointListWidget.this.client.textRenderer,
+          0, 0, 30, 20,
+          Text.translatable("gui.n_gameplay_base.light_orb_controllerr.checkpoint_list.entry.wait_field")
+      );
       this.ticksTextField.setText("" + this.checkpoint.getTicksToWait());
       this.ticksTextField.setChangedListener(s -> {
         int i = -1;
@@ -137,41 +139,41 @@ public class PathCheckpointListWidget extends EntryListWidget<PathCheckpointList
 
       this.stopBtn = new ButtonWidget(
           0, 0, 50, 20,
-          MutableText.of(new TranslatableTextContent(
+          Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
                   + (this.checkpoint.isStop() ? "active" : "inactive")
-          )),
+          ),
           button -> {
             this.checkpoint.setStop(!this.checkpoint.isStop());
-            button.setMessage(MutableText.of(new TranslatableTextContent(
+            button.setMessage(Text.translatable(
                 ("gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.stop_button."
                     + (this.checkpoint.isStop() ? "active" : "inactive"))
-            )));
+            ));
             PathCheckpointListWidget.this.onStopButtonClicked();
           }
       );
 
       this.deleteBtn = new ButtonWidget(
           0, 0, 20, 20,
-          MutableText.of(new TranslatableTextContent(
+          Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.delete_button"
-          )),
+          ),
           button -> PathCheckpointListWidget.this.onDeleteButtonClicked(this.index())
       );
 
       this.moveUpBtn = new ButtonWidget(
           0, 0, 20, 20,
-          MutableText.of(new TranslatableTextContent(
+          Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_up_button"
-          )),
+          ),
           button -> PathCheckpointListWidget.this.onMoveUpButtonClicked(this.index())
       );
 
       this.moveDownBtn = new ButtonWidget(
           0, 0, 20, 20,
-          MutableText.of(new TranslatableTextContent(
+          Text.translatable(
               "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button"
-          )),
+          ),
           button -> PathCheckpointListWidget.this.onMoveDownButtonClicked(this.index())
       );
 
