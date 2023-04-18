@@ -14,6 +14,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -44,6 +45,11 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
   }
 
   @Override
+  public BlockState getPlacementState(ItemPlacementContext ctx) {
+    return this.getDefaultState().with(TRIGGERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+  }
+
+  @Override
   public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
     super.onPlaced(world, pos, state, placer, itemStack);
     Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
@@ -60,7 +66,7 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
   @Override
   @SuppressWarnings("deprecation")
   public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-    boolean powered = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
+    boolean powered = world.isReceivingRedstonePower(pos);
     boolean triggered = state.get(TRIGGERED);
     if (powered && !triggered) {
       Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
@@ -80,9 +86,8 @@ public class LightOrbControllerBlock extends BlockWithEntity implements Operator
         MinecraftClient.getInstance().setScreen(new LightOrbControllerScreen(be.get()));
       }
       return ActionResult.SUCCESS;
-    } else {
-      return ActionResult.FAIL;
     }
+    return ActionResult.FAIL;
   }
 
   @Override
