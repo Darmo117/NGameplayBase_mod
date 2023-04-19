@@ -12,6 +12,7 @@ import net.darmo_creations.n_gameplay_base.items.ModItems;
 import net.darmo_creations.n_gameplay_base.network.C2SPacketFactory;
 import net.darmo_creations.n_gameplay_base.network.PacketRegistry;
 import net.darmo_creations.n_gameplay_base.network.packets.LightOrbControllerDataPacket;
+import net.darmo_creations.n_gameplay_base.network.packets.WindControllerDataPacket;
 import net.darmo_creations.n_gameplay_base.sounds.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -68,6 +69,11 @@ public class NGameplayBase implements ModInitializer {
         C2SPacketFactory.LIGHT_ORB_CONTROLLER_DATA_PACKET_ID,
         LightOrbControllerDataPacket.class,
         new LightOrbControllerDataPacket.ServerHandler()
+    );
+    PacketRegistry.registerPacket(
+        C2SPacketFactory.WIND_CONTROLLER_DATA_PACKET_ID,
+        WindControllerDataPacket.class,
+        new WindControllerDataPacket.ServerHandler()
     );
   }
 

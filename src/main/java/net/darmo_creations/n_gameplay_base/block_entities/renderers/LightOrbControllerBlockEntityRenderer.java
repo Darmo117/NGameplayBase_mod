@@ -8,8 +8,6 @@ import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.darmo_creations.n_gameplay_base.items.LightOrbTweakerItem;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
@@ -17,8 +15,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Matrix3f;
-import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
@@ -74,15 +70,13 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
   /**
    * Renders the hit box of the given light orb.
    */
-  private void renderLightOrbBox(LightOrbControllerBlockEntity be, LightOrb orb, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    BlockPos bePos = be.getPos();
-    Vec3d pos = orb.getPosition();
-    Vec3d hitBox = orb.getHitBoxSize();
+  private void renderLightOrbBox(LightOrbControllerBlockEntity be, LightOrb orb,
+                                 MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     RenderUtils.renderBoxInWorld(
-        matrices, vertexConsumers,
-        pos.getX() - bePos.getX(), pos.getY() - bePos.getY(), pos.getZ() - bePos.getZ(),
-        hitBox.getX(), hitBox.getY(), hitBox.getZ(),
-        0xffffff
+        orb.getPosition().subtract(Vec3d.of(be.getPos())),
+        orb.getHitBoxSize(),
+        1, 1, 1,
+        matrices, vertexConsumers
     );
   }
 
@@ -90,11 +84,11 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
    * Renders a box around the controller block.
    */
   private void renderControllerBox(MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    final double offset = 1e-3;
-    RenderUtils.renderBoxInWorld(matrices, vertexConsumers,
+    RenderUtils.renderBoxInWorld(
         0.5, 0.5, 0.5,
-        1 + offset, 1 + offset, 1 + offset,
-        0xffff00
+        1.001, 1.001, 1.001,
+        1, 1, 0,
+        matrices, vertexConsumers
     );
   }
 
@@ -113,19 +107,24 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
     double z = checkpointPos.getZ() - bePos.getZ() + 0.5;
 
     if (isFirst || isLast) {
-      int color;
+      int r, g = 0, b = 0;
       if (isFirst && isLast) {
-        color = 0xff0000;
+        r = 1;
       } else if (isFirst) {
-        color = 0xffff00;
+        r = g = 1;
       } else {
-        color = 0xff00ff;
+        r = b = 1;
       }
-      RenderUtils.renderBoxInWorld(matrices, vertexConsumers, x, y, z, 1, 1, 1, color);
+      RenderUtils.renderBoxInWorld(x, y, z, 1, 1, 1, r, g, b, matrices, vertexConsumers);
     }
 
-    int color = checkpoint.isStop() ? 0xff0000 : 0x00ff00;
-    RenderUtils.renderBoxInWorld(matrices, vertexConsumers, x, y, z, 0.5, 0.5, 0.5, color);
+    int r = 0, g = 0, b = 0;
+    if (checkpoint.isStop()) {
+      r = 1;
+    } else {
+      g = 1;
+    }
+    RenderUtils.renderBoxInWorld(x, y, z, 0.5, 0.5, 0.5, r, g, b, matrices, vertexConsumers);
   }
 
   /**
@@ -134,25 +133,9 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
   private void renderLine(LightOrbControllerBlockEntity be, PathCheckpoint checkpoint1, PathCheckpoint checkpoint2,
                           MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     BlockPos tePos = be.getPos();
-    BlockPos pos1 = checkpoint1.getPos();
-    BlockPos pos2 = checkpoint2.getPos();
-    final float offset = 0.5f;
-    float x1 = pos1.getX() - tePos.getX() + offset;
-    float y1 = pos1.getY() - tePos.getY() + offset;
-    float z1 = pos1.getZ() - tePos.getZ() + offset;
-    float x2 = pos2.getX() - tePos.getX() + offset;
-    float y2 = pos2.getY() - tePos.getY() + offset;
-    float z2 = pos2.getZ() - tePos.getZ() + offset;
-    VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getLines());
-    Matrix4f matrix4f = matrices.peek().getPositionMatrix();
-    Matrix3f matrix3f = matrices.peek().getNormalMatrix();
-    // Draw 3 lines with different normals to give the resulting line the same width from all camera angles
-    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 0, 1, 0).next();
-    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 0, 1, 0).next();
-    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 1, 0, 0).next();
-    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 1, 0, 0).next();
-    vertexConsumer.vertex(matrix4f, x1, y1, z1).color(255, 255, 255, 255).normal(matrix3f, 0, 0, 1).next();
-    vertexConsumer.vertex(matrix4f, x2, y2, z2).color(255, 255, 255, 255).normal(matrix3f, 0, 0, 1).next();
+    Vec3d p1 = Vec3d.of(checkpoint1.getPos().subtract(tePos)).add(0.5, 0.5, 0.5);
+    Vec3d p2 = Vec3d.of(checkpoint2.getPos().subtract(tePos)).add(0.5, 0.5, 0.5);
+    RenderUtils.renderLineInWorld(p1, p2, 1, 1, 1, matrices, vertexConsumers);
   }
 
   @Override

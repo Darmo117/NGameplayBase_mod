@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class LightOrbControllerDataPacket implements Packet {
   private final BlockPos pos;
@@ -40,21 +41,21 @@ public class LightOrbControllerDataPacket implements Packet {
   }
 
   public LightOrbControllerDataPacket(
-      final BlockPos pos,
-      final boolean active,
-      final boolean loops,
-      final boolean invisible,
-      final int lightLevel,
-      final double speed,
+      BlockPos pos,
+      boolean active,
+      boolean loops,
+      boolean invisible,
+      int lightLevel,
+      double speed,
       final List<PathCheckpoint> checkpoints
   ) {
-    this.pos = pos;
+    this.pos = Objects.requireNonNull(pos);
     this.active = active;
     this.loops = loops;
     this.invisible = invisible;
     this.lightLevel = lightLevel;
     this.speed = speed;
-    this.checkpoints = checkpoints;
+    this.checkpoints = Objects.requireNonNull(checkpoints);
   }
 
   @Override

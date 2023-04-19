@@ -145,6 +145,9 @@ public final class ModBlocks {
   public static final LightOrbSourceBlock LIGHT_ORB_SOURCE =
       register("light_orb_source", new LightOrbSourceBlock(), null);
 
+  public static final WindControllerBlock WIND_CONTROLLER =
+      register("wind_controller", new WindControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
+
   /**
    * Instanciates then registers a block for each {@link BlockColor} and puts them in the mod’s “Blocks” item group.
    *

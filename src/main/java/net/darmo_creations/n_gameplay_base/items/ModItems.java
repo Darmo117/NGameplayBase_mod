@@ -16,6 +16,8 @@ public final class ModItems {
       register("barrier_state_toggler", new PassableStateTogglerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
   public static final Item LIGHT_ORB_TWEAKER =
       register("light_orb_tweaker", new LightOrbTweakerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
+  public static final Item WIND_TWEAKER =
+      register("wind_tweaker", new WindTweakerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
 
   /**
    * Registers an item.

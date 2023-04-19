@@ -13,6 +13,8 @@ import java.util.Optional;
 public class C2SPacketFactory {
   public static final Identifier LIGHT_ORB_CONTROLLER_DATA_PACKET_ID =
       new Identifier(NGameplayBase.MOD_ID, "light_orb_controller_data_packet");
+  public static final Identifier WIND_CONTROLLER_DATA_PACKET_ID =
+      new Identifier(NGameplayBase.MOD_ID, "wind_controller_data_packet");
 
   /**
    * Sends a packet to the server.

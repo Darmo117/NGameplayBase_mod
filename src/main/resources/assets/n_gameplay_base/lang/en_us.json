@@ -202,6 +202,7 @@
   "block.n_gameplay_base.living_block": "“Living” Block",
 
   "block.n_gameplay_base.light_orb_controller": "Light Orb Controller",
+  "block.n_gameplay_base.wind_controller": "Wind Controller",
 
   "item.n_gameplay_base.barrier_state_toggler": "Barrier State Toggler",
   "item.n_gameplay_base.light_orb_tweaker": "Light Orb Tweaker",
@@ -210,6 +211,10 @@
   "item.n_gameplay_base.light_orb_tweaker.action_bar.controller_selected": "Selected controller at %s",
   "item.n_gameplay_base.light_orb_tweaker.action_bar.cannot_remove_checkpoint": "Cannot remove this checkpoint!",
   "item.n_gameplay_base.light_orb_tweaker.action_bar.checkpoints_removed": "Removed %d checkpoint(s)",
+  "item.n_gameplay_base.wind_tweaker": "Wind Tweaker",
+  "item.n_gameplay_base.wind_tweaker.action_bar.controller_selected": "Selected controller at %s",
+  "item.n_gameplay_base.wind_tweaker.tooltip.selection": "Selected controller position: %s",
+  "item.n_gameplay_base.wind_tweaker.tooltip.no_selection": "No controller selected",
 
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
   "commands.setpassable.failed": "No barrier blocks changed.",
@@ -235,6 +240,13 @@
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.delete_button": "X",
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_up_button": "/\\",
   "gui.n_gameplay_base.light_orb_controller.checkpoint_list.entry.move_down_button": "\\/",
+
+  "gui.n_gameplay_base.wind_controller.title": "Wind Controller",
+  "gui.n_gameplay_base.wind_controller.active_label.active": "Active",
+  "gui.n_gameplay_base.wind_controller.active_label.inactive": "Inactive",
+  "gui.n_gameplay_base.wind_controller.x_speed_widget.label": "X Speed",
+  "gui.n_gameplay_base.wind_controller.y_speed_widget.label": "Y Speed",
+  "gui.n_gameplay_base.wind_controller.z_speed_widget.label": "Z Speed",
 
   "block.minecraft.bed.not_possible_here": "§oStrangely, you don’t feel tired…"
 }
