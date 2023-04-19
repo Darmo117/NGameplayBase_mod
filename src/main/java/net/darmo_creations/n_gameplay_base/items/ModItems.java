@@ -4,6 +4,7 @@ import net.darmo_creations.n_gameplay_base.NGameplayBase;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 /**
@@ -13,11 +14,14 @@ import net.minecraft.util.registry.Registry;
 public final class ModItems {
   // Tools
   public static final Item BARRIER_STATE_TOGGLER =
-      register("barrier_state_toggler", new PassableStateTogglerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
+      register("barrier_state_toggler", new PassableStateTogglerItem(
+          new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP).rarity(Rarity.EPIC)));
   public static final Item LIGHT_ORB_TWEAKER =
-      register("light_orb_tweaker", new LightOrbTweakerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
+      register("light_orb_tweaker", new LightOrbTweakerItem(
+          new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP).rarity(Rarity.EPIC)));
   public static final Item WIND_TWEAKER =
-      register("wind_tweaker", new WindTweakerItem(new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
+      register("wind_tweaker", new WindTweakerItem(
+          new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP).rarity(Rarity.EPIC)));
 
   /**
    * Registers an item.

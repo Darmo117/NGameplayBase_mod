@@ -7,8 +7,10 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -210,7 +212,11 @@ public final class ModBlocks {
   private static <T extends Block> T register(final String name, final T block, final ItemGroup itemGroup) {
     Registry.register(Registry.BLOCK, new Identifier(NGameplayBase.MOD_ID, name), block);
     if (itemGroup != null) {
-      BlockItem blockItem = new BlockItem(block, new FabricItemSettings().group(itemGroup));
+      Item.Settings settings = new FabricItemSettings().group(itemGroup);
+      if (block instanceof OperatorBlock || block instanceof LightBlockerBlock) {
+        settings = settings.rarity(Rarity.EPIC);
+      }
+      BlockItem blockItem = new BlockItem(block, settings);
       Registry.register(Registry.ITEM, new Identifier(NGameplayBase.MOD_ID, name), blockItem);
     }
     return block;
