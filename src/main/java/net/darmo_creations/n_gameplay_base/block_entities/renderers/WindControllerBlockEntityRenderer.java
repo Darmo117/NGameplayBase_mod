@@ -9,13 +9,15 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
+
+import java.util.Optional;
 
 /**
  * Renderer for the tile entity associated to wind controllers.
@@ -26,7 +28,7 @@ import net.minecraft.util.math.Vec3d;
  * @see WindControllerBlock
  * @see ModBlocks#WIND_CONTROLLER
  */
-public class WindControllerBlockEntityRenderer implements BlockEntityRenderer<WindControllerBlockEntity> {
+public class WindControllerBlockEntityRenderer extends ControllerBlockEntityRenderer<WindControllerBlockEntity> {
   /**
    * Constructor required for registration.
    */
@@ -34,15 +36,19 @@ public class WindControllerBlockEntityRenderer implements BlockEntityRenderer<Wi
   }
 
   @Override
+  protected Item getItem() {
+    return ModItems.WIND_TWEAKER;
+  }
+
+  @Override
+  protected Optional<WindControllerBlockEntity> getBlockEntityFromStack(ItemStack stack, World world) {
+    return WindTweakerItem.getControllerTileEntity(stack, world);
+  }
+
+  @Override
   public void render(WindControllerBlockEntity be, float tickDelta, MatrixStack matrices,
                      VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    PlayerEntity player = MinecraftClient.getInstance().player;
-    //noinspection ConstantConditions
-    ItemStack stack = player.getMainHandStack();
-
-    if ((player.isCreativeLevelTwoOp() || player.isSpectator())
-        && stack.getItem() == ModItems.WIND_TWEAKER
-        && WindTweakerItem.getControllerTileEntity(stack, be.getWorld()).map(t -> t.getPos().equals(be.getPos())).orElse(false)) {
+    if (this.shouldRender(MinecraftClient.getInstance().player, be)) {
       this.renderControllerBox(matrices, vertexConsumers);
       this.renderRegionBox(be, matrices, vertexConsumers);
     }
@@ -68,7 +74,7 @@ public class WindControllerBlockEntityRenderer implements BlockEntityRenderer<Wi
     BlockPos boxPos1 = be.getLowerCorner().subtract(bePos);
     BlockPos boxPos2 = be.getUpperCorner().subtract(bePos);
     float r = 0, g = 0, b = 0;
-    if (be.isActive()) {
+    if (be.isTriggered()) {
       g = 1;
     } else {
       r = 1;

@@ -219,6 +219,11 @@
   "item.n_gameplay_base.wind_tweaker.tooltip.selection": "Selected controller position: %s",
   "item.n_gameplay_base.wind_tweaker.tooltip.no_selection": "No controller selected",
 
+  "item.n_gameplay_base.controller_stick": "Controller Stick",
+  "item.n_gameplay_base.controller_stick.tooltip": "Shows all controller blocks",
+  "item.n_gameplay_base.controller_stick.tooltip.active": "Active",
+  "item.n_gameplay_base.controller_stick.tooltip.inactive": "Inactive",
+
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
   "commands.setpassable.failed": "No barrier blocks changed.",
   "commands.setpassable.success": "Changed state of %d barrier block(s).",

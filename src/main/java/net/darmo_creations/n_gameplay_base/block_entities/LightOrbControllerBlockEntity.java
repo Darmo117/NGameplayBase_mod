@@ -4,13 +4,9 @@ import net.darmo_creations.n_gameplay_base.blocks.LightOrbControllerBlock;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -29,7 +25,7 @@ import java.util.stream.Collectors;
  * @see ModBlocks#LIGHT_ORB_CONTROLLER
  * @see LightOrb
  */
-public class LightOrbControllerBlockEntity extends BlockEntity {
+public class LightOrbControllerBlockEntity extends ControllerBlockEntity {
   private static final String ACTIVE_TAG_KEY = "Active";
   private static final String LOOPS_TAG_KEY = "Loops";
   private static final String INVISIBLE_TAG_KEY = "Invisible";
@@ -118,6 +114,7 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
   /**
    * Executes one tick of this block entity’s logic.
    */
+  @Override
   public void tick() {
     if (this.orb != null) {
       this.orb.tick();
@@ -343,15 +340,5 @@ public class LightOrbControllerBlockEntity extends BlockEntity {
     if (nbt.contains(ORB_DATA_TAG_KEY)) {
       this.orb = new LightOrb(this, nbt.getCompound(ORB_DATA_TAG_KEY));
     }
-  }
-
-  @Override
-  public Packet<ClientPlayPacketListener> toUpdatePacket() {
-    return BlockEntityUpdateS2CPacket.create(this);
-  }
-
-  @Override
-  public NbtCompound toInitialChunkDataNbt() {
-    return this.createNbt();
   }
 }

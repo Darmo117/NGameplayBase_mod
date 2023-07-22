@@ -1,32 +1,19 @@
 package net.darmo_creations.n_gameplay_base.blocks;
 
-import net.darmo_creations.n_gameplay_base.Utils;
 import net.darmo_creations.n_gameplay_base.block_entities.LightOrbControllerBlockEntity;
 import net.darmo_creations.n_gameplay_base.block_entities.ModBlockEntities;
 import net.darmo_creations.n_gameplay_base.gui.LightOrbControllerScreen;
 import net.darmo_creations.n_gameplay_base.items.LightOrbTweakerItem;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.MapColor;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
 
 /**
  * This block lets players configure light orbs through the use of a special tool and a configuration GUI.
@@ -34,80 +21,33 @@ import java.util.Optional;
  * @see LightOrbTweakerItem
  * @see LightOrbControllerBlockEntity
  */
-public class LightOrbControllerBlock extends BlockWithEntity implements OperatorBlock, ModBlock {
-  public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;
-
+public class LightOrbControllerBlock extends ControllerBlock<LightOrbControllerBlockEntity> {
   public LightOrbControllerBlock() {
-    // Same settings as command block
-    super(ModBlock.getSettings(FabricBlockSettings.of(Material.METAL, MapColor.WHITE).sounds(BlockSoundGroup.METAL)));
-    this.setDefaultState(this.getStateManager().getDefaultState().with(TRIGGERED, false));
+    super(MapColor.WHITE, LightOrbControllerBlockEntity.class);
   }
 
   @Override
-  public BlockState getPlacementState(ItemPlacementContext ctx) {
-    return this.getDefaultState().with(TRIGGERED, ctx.getWorld().isReceivingRedstonePower(ctx.getBlockPos()));
+  protected void onPlaced(LightOrbControllerBlockEntity be, World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+    be.init();
   }
 
   @Override
-  public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-    super.onPlaced(world, pos, state, placer, itemStack);
-    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
-        .ifPresent(LightOrbControllerBlockEntity::init);
+  protected void onBreak(LightOrbControllerBlockEntity lightOrbControllerBlockEntity, World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    lightOrbControllerBlockEntity.onRemoved();
   }
 
   @Override
-  public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-    Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
-        .ifPresent(LightOrbControllerBlockEntity::onRemoved);
-    super.onBreak(world, pos, state, player);
+  protected void onTriggerRising(LightOrbControllerBlockEntity be, BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos) {
+    be.resetOrb();
   }
 
   @Override
-  @SuppressWarnings("deprecation")
-  public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-    boolean powered = world.isReceivingRedstonePower(pos);
-    boolean triggered = state.get(TRIGGERED);
-    if (powered && !triggered) {
-      Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos)
-          .ifPresent(LightOrbControllerBlockEntity::resetOrb);
-      world.setBlockState(pos, state.with(TRIGGERED, true), NOTIFY_ALL);
-    } else if (!powered && triggered) {
-      world.setBlockState(pos, state.with(TRIGGERED, false), NOTIFY_ALL);
-    }
-  }
-
-  @SuppressWarnings("deprecation")
-  @Override
-  public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-    Optional<LightOrbControllerBlockEntity> be = Utils.getBlockEntity(LightOrbControllerBlockEntity.class, world, pos);
-    if (be.isPresent() && player.isCreativeLevelTwoOp()) {
-      if (world.isClient()) {
-        MinecraftClient.getInstance().setScreen(new LightOrbControllerScreen(be.get()));
-      }
-      return ActionResult.SUCCESS;
-    }
-    return ActionResult.FAIL;
+  protected BlockEntityType<LightOrbControllerBlockEntity> getBlockEntityType() {
+    return ModBlockEntities.LIGHT_ORB_CONTROLLER;
   }
 
   @Override
-  public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-    return type == ModBlockEntities.LIGHT_ORB_CONTROLLER
-        ? (world_, pos, state_, be) -> ((LightOrbControllerBlockEntity) be).tick()
-        : null;
-  }
-
-  @Override
-  public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-    return new LightOrbControllerBlockEntity(pos, state);
-  }
-
-  @Override
-  protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    builder.add(TRIGGERED);
-  }
-
-  @Override
-  public BlockRenderType getRenderType(BlockState state) {
-    return BlockRenderType.MODEL;
+  protected Screen getScreen(LightOrbControllerBlockEntity be) {
+    return new LightOrbControllerScreen(be);
   }
 }

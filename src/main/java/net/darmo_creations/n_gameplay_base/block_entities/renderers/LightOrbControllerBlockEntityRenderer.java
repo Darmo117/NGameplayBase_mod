@@ -9,15 +9,16 @@ import net.darmo_creations.n_gameplay_base.items.LightOrbTweakerItem;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Renderer for the tile entity associated to light orb controllers.
@@ -28,7 +29,7 @@ import java.util.List;
  * @see LightOrbControllerBlock
  * @see ModBlocks#LIGHT_ORB_CONTROLLER
  */
-public class LightOrbControllerBlockEntityRenderer implements BlockEntityRenderer<LightOrbControllerBlockEntity> {
+public class LightOrbControllerBlockEntityRenderer extends ControllerBlockEntityRenderer<LightOrbControllerBlockEntity> {
   /**
    * Constructor required for registration.
    */
@@ -36,15 +37,19 @@ public class LightOrbControllerBlockEntityRenderer implements BlockEntityRendere
   }
 
   @Override
+  protected Item getItem() {
+    return ModItems.LIGHT_ORB_TWEAKER;
+  }
+
+  @Override
+  protected Optional<LightOrbControllerBlockEntity> getBlockEntityFromStack(ItemStack stack, World world) {
+    return LightOrbTweakerItem.getControllerTileEntity(stack, world);
+  }
+
+  @Override
   public void render(LightOrbControllerBlockEntity be, float tickDelta, MatrixStack matrices,
                      VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    PlayerEntity player = MinecraftClient.getInstance().player;
-    //noinspection ConstantConditions
-    ItemStack stack = player.getMainHandStack();
-
-    if ((player.isCreativeLevelTwoOp() || player.isSpectator())
-        && stack.getItem() == ModItems.LIGHT_ORB_TWEAKER
-        && LightOrbTweakerItem.getControllerTileEntity(stack, be.getWorld()).map(t -> t.getPos().equals(be.getPos())).orElse(false)) {
+    if (this.shouldRender(MinecraftClient.getInstance().player, be)) {
       this.renderControllerBox(matrices, vertexConsumers);
       be.getOrb().ifPresent(orb -> this.renderLightOrbBox(be, orb, matrices, vertexConsumers));
 

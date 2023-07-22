@@ -41,7 +41,7 @@ public class WindControllerScreen extends Screen {
   public WindControllerScreen(WindControllerBlockEntity blockEntity) {
     super(Text.translatable("gui.n_gameplay_base.wind_controller.title"));
     this.blockEntity = blockEntity;
-    this.active = blockEntity.isActive();
+    this.active = blockEntity.isTriggered();
     this.windDirection = blockEntity.getWindDirection();
   }
 
@@ -55,13 +55,13 @@ public class WindControllerScreen extends Screen {
     //noinspection DataFlowIssue
     this.xSpeedTextField = this.addDrawableChild(
         new TextFieldWidget(this.client.textRenderer, middle - 2 * btnW, y, btnW, BUTTON_HEIGHT, null));
-    this.xSpeedTextField.setText("" + this.windDirection.getX());
+    this.xSpeedTextField.setText(String.valueOf(this.windDirection.getX()));
     this.ySpeedTextField = this.addDrawableChild(
         new TextFieldWidget(this.client.textRenderer, middle - btnW / 2, y, btnW, BUTTON_HEIGHT, null));
-    this.ySpeedTextField.setText("" + this.windDirection.getY());
+    this.ySpeedTextField.setText(String.valueOf(this.windDirection.getY()));
     this.zSpeedTextField = this.addDrawableChild(
         new TextFieldWidget(this.client.textRenderer, middle + btnW, y, btnW, BUTTON_HEIGHT, null));
-    this.zSpeedTextField.setText("" + this.windDirection.getZ());
+    this.zSpeedTextField.setText(String.valueOf(this.windDirection.getZ()));
 
     final int leftButtonX = middle - BUTTON_WIDTH - MARGIN;
     final int rightButtonX = middle + MARGIN;

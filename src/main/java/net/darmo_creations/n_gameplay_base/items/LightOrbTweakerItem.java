@@ -17,6 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -42,7 +43,7 @@ public class LightOrbTweakerItem extends Item {
   private static final String CONTROLLER_POS_TAG_KEY = "ControllerPos";
 
   public LightOrbTweakerItem(Settings settings) {
-    super(settings.maxCount(1));
+    super(settings.rarity(Rarity.EPIC).maxCount(1));
   }
 
   @Override

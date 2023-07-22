@@ -4,13 +4,9 @@ import net.darmo_creations.n_gameplay_base.Utils;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.darmo_creations.n_gameplay_base.blocks.WindControllerBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -24,16 +20,11 @@ import java.util.Objects;
  * @see WindControllerBlock
  * @see ModBlocks#WIND_CONTROLLER
  */
-public class WindControllerBlockEntity extends BlockEntity {
-  private static final String ACTIVE_TAG_KEY = "Active";
+public class WindControllerBlockEntity extends ControllerBlockEntity {
   private static final String CORNER1_TAG_KEY = "Corner1";
   private static final String CORNER2_TAG_KEY = "Corner2";
   private static final String DIRECTION_TAG_KEY = "Direction";
 
-  /**
-   * Whether the wind should blow.
-   */
-  private boolean active;
   /**
    * Vector representing the wind’s direction,
    * i.e. the acceleration applied to all living entities within the region.
@@ -62,7 +53,7 @@ public class WindControllerBlockEntity extends BlockEntity {
    * @param blockState State of the associated block.
    */
   public void init(BlockState blockState) {
-    this.setActive(blockState.get(WindControllerBlock.TRIGGERED));
+    this.setTriggered(blockState.get(WindControllerBlock.TRIGGERED));
     this.setWindDirection(Vec3d.ZERO);
     this.addCorner(this.getPos().up());
     this.addCorner(this.getPos().up());
@@ -71,8 +62,9 @@ public class WindControllerBlockEntity extends BlockEntity {
   /**
    * Executes one tick of this block entity’s logic.
    */
+  @Override
   public void tick() {
-    if (this.active && this.lowerCorner != null && this.upperCorner != null && this.world != null) {
+    if (this.isTriggered() && this.lowerCorner != null && this.upperCorner != null && this.world != null) {
       Box box = new Box(
           this.lowerCorner.getX(), this.lowerCorner.getY(), this.lowerCorner.getZ(),
           this.upperCorner.getX() + 1, this.upperCorner.getY() + 1, this.upperCorner.getZ() + 1
@@ -81,23 +73,6 @@ public class WindControllerBlockEntity extends BlockEntity {
       entities.forEach(
           e -> e.addVelocity(this.windDirection.getX(), this.windDirection.getY(), this.windDirection.getZ()));
     }
-  }
-
-  /**
-   * Whether this controller is active, i.e. the light orb should react to player.
-   */
-  public boolean isActive() {
-    return this.active;
-  }
-
-  /**
-   * Set active state.
-   *
-   * @param active Whether the wind should blow.
-   */
-  public void setActive(boolean active) {
-    this.active = active;
-    this.markDirty();
   }
 
   public Vec3d getWindDirection() {
@@ -143,7 +118,6 @@ public class WindControllerBlockEntity extends BlockEntity {
   @Override
   protected void writeNbt(NbtCompound nbt) {
     super.writeNbt(nbt);
-    nbt.putBoolean(ACTIVE_TAG_KEY, this.active);
     nbt.put(CORNER1_TAG_KEY, NbtHelper.fromBlockPos(this.corner1));
     nbt.put(CORNER2_TAG_KEY, NbtHelper.fromBlockPos(this.corner2));
     Utils.putVec3d(this.windDirection, nbt, DIRECTION_TAG_KEY);
@@ -152,20 +126,9 @@ public class WindControllerBlockEntity extends BlockEntity {
   @Override
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
-    this.active = nbt.getBoolean(ACTIVE_TAG_KEY);
     this.corner1 = NbtHelper.toBlockPos(nbt.getCompound(CORNER1_TAG_KEY));
     this.corner2 = NbtHelper.toBlockPos(nbt.getCompound(CORNER2_TAG_KEY));
     this.windDirection = Utils.getVec3d(nbt, DIRECTION_TAG_KEY);
     this.updateLowerUpperCorners();
-  }
-
-  @Override
-  public Packet<ClientPlayPacketListener> toUpdatePacket() {
-    return BlockEntityUpdateS2CPacket.create(this);
-  }
-
-  @Override
-  public NbtCompound toInitialChunkDataNbt() {
-    return this.createNbt();
   }
 }
