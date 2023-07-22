@@ -152,6 +152,8 @@ public final class ModBlocks {
       register("light_blocker", new LightBlockerBlock(), NGameplayBase.TECHNICAL_GROUP);
   public static final KillTriggerBlock KILL_TRIGGER =
       register("kill_trigger", new KillTriggerBlock(), NGameplayBase.TECHNICAL_GROUP);
+  public static final SpawnpointSetterBlock SPAWNPOINT_SETTER =
+      register("spawnpoint_setter", new SpawnpointSetterBlock(), NGameplayBase.TECHNICAL_GROUP);
 
   /**
    * Instanciates then registers a block for each {@link BlockColor} and puts them in the mod’s “Blocks” item group.
