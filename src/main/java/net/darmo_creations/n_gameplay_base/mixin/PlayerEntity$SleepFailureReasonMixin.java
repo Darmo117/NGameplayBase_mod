@@ -1,6 +1,7 @@
 package net.darmo_creations.n_gameplay_base.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +19,8 @@ public class PlayerEntity$SleepFailureReasonMixin {
   private void onGetMessage(CallbackInfoReturnable<Text> cir) {
     // Using equals to test equality as we cannot inherit from enums, "==" operator would not compile
     if (this.equals(PlayerEntity.SleepFailureReason.NOT_POSSIBLE_HERE)) {
-      cir.setReturnValue(Text.translatable("block.minecraft.bed.not_possible_here"));
+      cir.setReturnValue(Text.translatable("block.minecraft.bed.not_possible_here")
+          .setStyle(Style.EMPTY.withItalic(true)));
     }
   }
 }

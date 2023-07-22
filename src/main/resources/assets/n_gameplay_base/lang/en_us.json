@@ -256,5 +256,5 @@
   "gui.n_gameplay_base.wind_controller.y_speed_widget.label": "Y Speed",
   "gui.n_gameplay_base.wind_controller.z_speed_widget.label": "Z Speed",
 
-  "block.minecraft.bed.not_possible_here": "§oStrangely, you don’t feel tired…"
+  "block.minecraft.bed.not_possible_here": "Strangely, you don’t feel tired…"
 }
