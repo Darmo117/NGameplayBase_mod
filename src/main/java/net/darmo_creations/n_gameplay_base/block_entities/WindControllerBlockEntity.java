@@ -6,12 +6,9 @@ import net.darmo_creations.n_gameplay_base.blocks.WindControllerBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -20,9 +17,7 @@ import java.util.Objects;
  * @see WindControllerBlock
  * @see ModBlocks#WIND_CONTROLLER
  */
-public class WindControllerBlockEntity extends ControllerBlockEntity {
-  private static final String CORNER1_TAG_KEY = "Corner1";
-  private static final String CORNER2_TAG_KEY = "Corner2";
+public class WindControllerBlockEntity extends ControllerBlockEntityWithArea {
   private static final String DIRECTION_TAG_KEY = "Direction";
 
   /**
@@ -30,14 +25,6 @@ public class WindControllerBlockEntity extends ControllerBlockEntity {
    * i.e. the acceleration applied to all living entities within the region.
    */
   private Vec3d windDirection;
-  /**
-   * Lower and upper corners of the windy region.
-   */
-  private BlockPos lowerCorner, upperCorner;
-  /**
-   * Actual corners of the windy region as set by players.
-   */
-  private BlockPos corner1, corner2;
 
   /**
    * Create a block entity with an empty region.
@@ -53,26 +40,15 @@ public class WindControllerBlockEntity extends ControllerBlockEntity {
    * @param blockState State of the associated block.
    */
   public void init(BlockState blockState) {
-    this.setTriggered(blockState.get(WindControllerBlock.TRIGGERED));
+    super.init(blockState);
     this.setWindDirection(Vec3d.ZERO);
-    this.addCorner(this.getPos().up());
-    this.addCorner(this.getPos().up());
   }
 
-  /**
-   * Executes one tick of this block entity’s logic.
-   */
   @Override
-  public void tick() {
-    if (this.isTriggered() && this.lowerCorner != null && this.upperCorner != null && this.world != null) {
-      Box box = new Box(
-          this.lowerCorner.getX(), this.lowerCorner.getY(), this.lowerCorner.getZ(),
-          this.upperCorner.getX() + 1, this.upperCorner.getY() + 1, this.upperCorner.getZ() + 1
-      );
-      List<LivingEntity> entities = this.world.getEntitiesByClass(LivingEntity.class, box, LivingEntity::isAlive);
-      entities.forEach(
-          e -> e.addVelocity(this.windDirection.getX(), this.windDirection.getY(), this.windDirection.getZ()));
-    }
+  protected void doTick() {
+    //noinspection DataFlowIssue
+    this.world.getEntitiesByClass(LivingEntity.class, this.getBox(), LivingEntity::isAlive)
+        .forEach(e -> e.addVelocity(this.windDirection.getX(), this.windDirection.getY(), this.windDirection.getZ()));
   }
 
   public Vec3d getWindDirection() {
@@ -85,50 +61,15 @@ public class WindControllerBlockEntity extends ControllerBlockEntity {
     this.markDirty();
   }
 
-  public void addCorner(BlockPos pos) {
-    this.corner2 = this.corner1;
-    this.corner1 = pos;
-    this.updateLowerUpperCorners();
-    this.markDirty();
-  }
-
-  public BlockPos getLowerCorner() {
-    return this.lowerCorner;
-  }
-
-  public BlockPos getUpperCorner() {
-    return this.upperCorner;
-  }
-
-  private void updateLowerUpperCorners() {
-    if (this.corner1 != null && this.corner2 != null) {
-      this.lowerCorner = new BlockPos(
-          Math.min(this.corner1.getX(), this.corner2.getX()),
-          Math.min(this.corner1.getY(), this.corner2.getY()),
-          Math.min(this.corner1.getZ(), this.corner2.getZ())
-      );
-      this.upperCorner = new BlockPos(
-          Math.max(this.corner1.getX(), this.corner2.getX()),
-          Math.max(this.corner1.getY(), this.corner2.getY()),
-          Math.max(this.corner1.getZ(), this.corner2.getZ())
-      );
-    }
-  }
-
   @Override
   protected void writeNbt(NbtCompound nbt) {
     super.writeNbt(nbt);
-    nbt.put(CORNER1_TAG_KEY, NbtHelper.fromBlockPos(this.corner1));
-    nbt.put(CORNER2_TAG_KEY, NbtHelper.fromBlockPos(this.corner2));
     Utils.putVec3d(this.windDirection, nbt, DIRECTION_TAG_KEY);
   }
 
   @Override
   public void readNbt(NbtCompound nbt) {
     super.readNbt(nbt);
-    this.corner1 = NbtHelper.toBlockPos(nbt.getCompound(CORNER1_TAG_KEY));
-    this.corner2 = NbtHelper.toBlockPos(nbt.getCompound(CORNER2_TAG_KEY));
     this.windDirection = Utils.getVec3d(nbt, DIRECTION_TAG_KEY);
-    this.updateLowerUpperCorners();
   }
 }

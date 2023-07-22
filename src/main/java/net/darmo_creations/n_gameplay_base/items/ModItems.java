@@ -23,8 +23,8 @@ public final class ModItems {
   public static final Item LIGHT_ORB_TWEAKER =
       register("light_orb_tweaker", new LightOrbTweakerItem(
           new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
-  public static final Item WIND_TWEAKER =
-      register("wind_tweaker", new WindTweakerItem(
+  public static final Item CONTROLLER_AREA_TWEAKER =
+      register("controller_area_tweaker", new ControllerAreaTweakerItem(
           new FabricItemSettings().group(NGameplayBase.TECHNICAL_GROUP)));
 
   /**

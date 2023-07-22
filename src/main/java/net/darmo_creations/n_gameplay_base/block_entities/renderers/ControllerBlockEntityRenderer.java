@@ -30,7 +30,7 @@ public abstract class ControllerBlockEntityRenderer<T extends ControllerBlockEnt
       return false;
     }
     ItemStack stack = player.getMainHandStack();
-    return stack.getItem() == ModItems.CONTROLLER_STICK && ControllerStickItem.isActive(stack)
+    return stack.getItem() == ModItems.CONTROLLER_STICK
         || stack.getItem() == this.getItem()
         && this.getBlockEntityFromStack(stack, be.getWorld()).map(t -> t.getPos().equals(be.getPos())).orElse(false);
   }

@@ -3,117 +3,53 @@ package net.darmo_creations.n_gameplay_base.block_entities.renderers;
 import net.darmo_creations.n_gameplay_base.block_entities.WindControllerBlockEntity;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.darmo_creations.n_gameplay_base.blocks.WindControllerBlock;
-import net.darmo_creations.n_gameplay_base.items.ModItems;
-import net.darmo_creations.n_gameplay_base.items.WindTweakerItem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-
-import java.util.Optional;
+import org.apache.commons.lang3.tuple.Triple;
 
 /**
- * Renderer for the tile entity associated to wind controllers.
+ * Renderer for the block entity associated to wind controllers.
  * <p>
- * Renders the windy region as a wireframe box.
+ * Renders the region as a light gray wireframe box.
  *
  * @see WindControllerBlockEntity
  * @see WindControllerBlock
  * @see ModBlocks#WIND_CONTROLLER
  */
-public class WindControllerBlockEntityRenderer extends ControllerBlockEntityRenderer<WindControllerBlockEntity> {
-  /**
-   * Constructor required for registration.
-   */
-  public WindControllerBlockEntityRenderer(BlockEntityRendererFactory.Context ignored) {
+public class WindControllerBlockEntityRenderer
+    extends ControllerBlockEntityWithAreaRenderer<WindControllerBlockEntity> {
+  private static final Triple<Float, Float, Float> COLOR = Triple.of(0.7f, 0.7f, 0.7f);
+
+  public WindControllerBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
+    super(context);
   }
 
   @Override
-  protected Item getItem() {
-    return ModItems.WIND_TWEAKER;
+  protected Class<WindControllerBlockEntity> getBlockEntityClass() {
+    return WindControllerBlockEntity.class;
   }
 
   @Override
-  protected Optional<WindControllerBlockEntity> getBlockEntityFromStack(ItemStack stack, World world) {
-    return WindTweakerItem.getControllerTileEntity(stack, world);
+  protected Triple<Float, Float, Float> getColor() {
+    return COLOR;
   }
 
   @Override
-  public void render(WindControllerBlockEntity be, float tickDelta, MatrixStack matrices,
-                     VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    if (this.shouldRender(MinecraftClient.getInstance().player, be)) {
-      this.renderControllerBox(matrices, vertexConsumers);
-      this.renderRegionBox(be, matrices, vertexConsumers);
-    }
-  }
-
-  /**
-   * Renders a box around the controller block.
-   */
-  private void renderControllerBox(MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    RenderUtils.renderBoxInWorld(
-        0.5, 0.5, 0.5,
-        1.001, 1.001, 1.001,
-        1, 1, 0,
-        matrices, vertexConsumers
-    );
-  }
-
-  /**
-   * Renders a box around the windy region.
-   */
-  private void renderRegionBox(WindControllerBlockEntity be, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
-    BlockPos bePos = be.getPos();
-    BlockPos boxPos1 = be.getLowerCorner().subtract(bePos);
-    BlockPos boxPos2 = be.getUpperCorner().subtract(bePos);
-    float r = 0, g = 0, b = 0;
-    if (be.isTriggered()) {
-      g = 1;
-    } else {
-      r = 1;
-    }
-    WorldRenderer.drawBox(
-        matrices, vertexConsumers.getBuffer(RenderLayer.getLines()),
-        boxPos1.getX(), boxPos1.getY(), boxPos1.getZ(), boxPos2.getX() + 1, boxPos2.getY() + 1, boxPos2.getZ() + 1,
-        r, g, b, 1,
-        r, g, b
-    );
+  protected void renderAdditional(WindControllerBlockEntity be, MatrixStack matrices, VertexConsumerProvider vertexConsumers) {
     // Direction arrow
-    Vec3d arrowPos = new Vec3d(
-        (boxPos1.getX() + boxPos2.getX()) / 2.0 + 0.5,
-        (boxPos1.getY() + boxPos2.getY()) / 2.0 + 0.5,
-        (boxPos1.getZ() + boxPos2.getZ()) / 2.0 + 0.5
-    );
+    Vec3d arrowPos = this.getBoxCenter(be);
     Vec3d arrowHeadPos = arrowPos.add(be.getWindDirection().normalize());
-    final double arrowBoxSize = 0.1;
-    RenderUtils.renderBoxInWorld(
-        arrowPos,
-        new Vec3d(arrowBoxSize, arrowBoxSize, arrowBoxSize),
-        r, g, b,
-        matrices, vertexConsumers
-    );
+    var color = this.getColor();
+    float r = color.getLeft();
+    float g = color.getMiddle();
+    float b = color.getRight();
     RenderUtils.renderLineInWorld(
         arrowPos,
         arrowHeadPos,
         r, g, b,
         matrices, vertexConsumers
     );
-  }
-
-  @Override
-  public boolean rendersOutsideBoundingBox(WindControllerBlockEntity blockEntity) {
-    return true;
-  }
-
-  @Override
-  public int getRenderDistance() {
-    return 1000;
   }
 }

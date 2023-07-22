@@ -121,6 +121,9 @@ public abstract class ControllerBlock<BE extends ControllerBlockEntity>
   @SuppressWarnings("deprecation")
   @Override
   public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    if (!this.hasScreen()) {
+      return ActionResult.FAIL;
+    }
     Optional<BE> be = Utils.getBlockEntity(this.blockEntityClass, world, pos);
     if (be.isPresent() && player.isCreativeLevelTwoOp()) {
       if (world.isClient()) {
@@ -131,7 +134,21 @@ public abstract class ControllerBlock<BE extends ControllerBlockEntity>
     return ActionResult.FAIL;
   }
 
-  protected abstract Screen getScreen(BE be);
+  /**
+   * {@return whether to show a screen when this block is used.}
+   */
+  protected boolean hasScreen() {
+    return true;
+  }
+
+  /**
+   * {@return the screen to show when this block is used.}
+   *
+   * @param be The block’s entity.
+   */
+  protected Screen getScreen(BE be) {
+    return null;
+  }
 
   @Override
   @SuppressWarnings("unchecked")

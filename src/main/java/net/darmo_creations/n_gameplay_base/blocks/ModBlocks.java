@@ -140,20 +140,20 @@ public final class ModBlocks {
     }
   }
 
+  // Controllers
   public static final LightOrbControllerBlock LIGHT_ORB_CONTROLLER =
       register("light_orb_controller", new LightOrbControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
   public static final LightOrbSourceBlock LIGHT_ORB_SOURCE =
       register("light_orb_source", new LightOrbSourceBlock(), null);
-
   public static final WindControllerBlock WIND_CONTROLLER =
       register("wind_controller", new WindControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
+  public static final KillTriggerControllerBlock KILL_TRIGGER_CONTROLLER =
+      register("kill_trigger_controller", new KillTriggerControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
+  public static final SetSpawnTriggerControllerBlock SET_SPAWN_TRIGGER_CONTROLLER =
+      register("set_spawn_trigger_controller", new SetSpawnTriggerControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
 
   public static final LightBlockerBlock LIGHT_BLOCKER =
       register("light_blocker", new LightBlockerBlock(), NGameplayBase.TECHNICAL_GROUP);
-  public static final KillTriggerBlock KILL_TRIGGER =
-      register("kill_trigger", new KillTriggerBlock(), NGameplayBase.TECHNICAL_GROUP);
-  public static final SpawnpointSetterBlock SPAWNPOINT_SETTER =
-      register("spawnpoint_setter", new SpawnpointSetterBlock(), NGameplayBase.TECHNICAL_GROUP);
 
   /**
    * Instanciates then registers a block for each {@link BlockColor} and puts them in the mod’s “Blocks” item group.
@@ -218,7 +218,7 @@ public final class ModBlocks {
     Registry.register(Registry.BLOCK, new Identifier(NGameplayBase.MOD_ID, name), block);
     if (itemGroup != null) {
       Item.Settings settings = new FabricItemSettings().group(itemGroup);
-      if (block instanceof OperatorBlock || block instanceof LightBlockerBlock || block instanceof KillTriggerBlock) {
+      if (block instanceof OperatorBlock || block instanceof LightBlockerBlock) {
         settings = settings.rarity(Rarity.EPIC);
       }
       BlockItem blockItem = new BlockItem(block, settings);

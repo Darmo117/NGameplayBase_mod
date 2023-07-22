@@ -1,7 +1,9 @@
 package net.darmo_creations.n_gameplay_base.block_entities;
 
 import net.darmo_creations.n_gameplay_base.NGameplayBase;
+import net.darmo_creations.n_gameplay_base.block_entities.renderers.KillTriggerControllerBlockEntityRenderer;
 import net.darmo_creations.n_gameplay_base.block_entities.renderers.LightOrbControllerBlockEntityRenderer;
+import net.darmo_creations.n_gameplay_base.block_entities.renderers.SetSpawnTriggerControllerBlockEntityRenderer;
 import net.darmo_creations.n_gameplay_base.block_entities.renderers.WindControllerBlockEntityRenderer;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -18,10 +20,16 @@ import net.minecraft.util.registry.Registry;
 public final class ModBlockEntities {
   public static final BlockEntityType<FloatingVariableLightBlockEntity> FLOATING_VARIABLE_LIGHT_BLOCK =
       register("floating_variable_light", FloatingVariableLightBlockEntity::new, ModBlocks.FLOATING_VARIABLE_LIGHT_BLOCK);
+
+  // Controllers
   public static final BlockEntityType<LightOrbControllerBlockEntity> LIGHT_ORB_CONTROLLER =
       register("light_orb_controller", LightOrbControllerBlockEntity::new, ModBlocks.LIGHT_ORB_CONTROLLER);
   public static final BlockEntityType<WindControllerBlockEntity> WIND_CONTROLLER =
       register("wind_controller", WindControllerBlockEntity::new, ModBlocks.WIND_CONTROLLER);
+  public static final BlockEntityType<KillTriggerControllerBlockEntity> KILL_TRIGGER_CONTROLLER =
+      register("kill_trigger_controller", KillTriggerControllerBlockEntity::new, ModBlocks.KILL_TRIGGER_CONTROLLER);
+  public static final BlockEntityType<SetSpawnTriggerControllerBlockEntity> SET_SPAWN_TRIGGER_CONTROLLER =
+      register("set_spawn_trigger_controller", SetSpawnTriggerControllerBlockEntity::new, ModBlocks.SET_SPAWN_TRIGGER_CONTROLLER);
 
   /**
    * Registers a block entity type.
@@ -61,6 +69,8 @@ public final class ModBlockEntities {
   public static void registerRenderers() {
     BlockEntityRendererFactories.register(LIGHT_ORB_CONTROLLER, LightOrbControllerBlockEntityRenderer::new);
     BlockEntityRendererFactories.register(WIND_CONTROLLER, WindControllerBlockEntityRenderer::new);
+    BlockEntityRendererFactories.register(KILL_TRIGGER_CONTROLLER, KillTriggerControllerBlockEntityRenderer::new);
+    BlockEntityRendererFactories.register(SET_SPAWN_TRIGGER_CONTROLLER, SetSpawnTriggerControllerBlockEntityRenderer::new);
   }
 
   private ModBlockEntities() {

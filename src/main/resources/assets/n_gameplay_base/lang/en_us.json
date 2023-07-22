@@ -158,8 +158,6 @@
   "block.n_gameplay_base.small_offset_light": "Small Offset Light",
 
   "block.n_gameplay_base.light_blocker": "Light Blocker",
-  "block.n_gameplay_base.kill_trigger": "Kill Trigger",
-  "block.n_gameplay_base.spawnpoint_setter": "Spawnpoint Setter",
 
   "block.n_gameplay_base.light_block_1": "Light Block 1",
   "block.n_gameplay_base.light_block_2": "Light Block 2",
@@ -206,23 +204,25 @@
 
   "block.n_gameplay_base.light_orb_controller": "Light Orb Controller",
   "block.n_gameplay_base.wind_controller": "Wind Controller",
+  "block.n_gameplay_base.kill_trigger_controller": "Kill Trigger Controller",
+  "block.n_gameplay_base.set_spawn_trigger_controller": "Set Spawn Trigger Controller",
 
   "item.n_gameplay_base.barrier_state_toggler": "Barrier State Toggler",
+
   "item.n_gameplay_base.light_orb_tweaker": "Light Orb Tweaker",
   "item.n_gameplay_base.light_orb_tweaker.tooltip.selection": "Selected controller position: %s",
   "item.n_gameplay_base.light_orb_tweaker.tooltip.no_selection": "No controller selected",
   "item.n_gameplay_base.light_orb_tweaker.action_bar.controller_selected": "Selected controller at %s",
   "item.n_gameplay_base.light_orb_tweaker.action_bar.cannot_remove_checkpoint": "Cannot remove this checkpoint!",
   "item.n_gameplay_base.light_orb_tweaker.action_bar.checkpoints_removed": "Removed %d checkpoint(s)",
-  "item.n_gameplay_base.wind_tweaker": "Wind Tweaker",
-  "item.n_gameplay_base.wind_tweaker.action_bar.controller_selected": "Selected controller at %s",
-  "item.n_gameplay_base.wind_tweaker.tooltip.selection": "Selected controller position: %s",
-  "item.n_gameplay_base.wind_tweaker.tooltip.no_selection": "No controller selected",
+
+  "item.n_gameplay_base.controller_area_tweaker": "Controller Area Tweaker",
+  "item.n_gameplay_base.controller_area_tweaker.action_bar.controller_selected": "Selected controller at %s",
+  "item.n_gameplay_base.controller_area_tweaker.tooltip.selection": "Selected controller position: %s",
+  "item.n_gameplay_base.controller_area_tweaker.tooltip.no_selection": "No controller selected",
 
   "item.n_gameplay_base.controller_stick": "Controller Stick",
   "item.n_gameplay_base.controller_stick.tooltip": "Shows all controller blocks",
-  "item.n_gameplay_base.controller_stick.tooltip.active": "Active",
-  "item.n_gameplay_base.controller_stick.tooltip.inactive": "Inactive",
 
   "commands.setpassable.too_big": "Too many blocks (%d < %d)!",
   "commands.setpassable.failed": "No barrier blocks changed.",
@@ -256,5 +256,20 @@
   "gui.n_gameplay_base.wind_controller.y_speed_widget.label": "Y Speed",
   "gui.n_gameplay_base.wind_controller.z_speed_widget.label": "Z Speed",
 
-  "block.minecraft.bed.not_possible_here": "Strangely, you don’t feel tired…"
+  "gui.n_gameplay_base.set_spawn_trigger_controller.title": "Set Spawn Trigger Controller",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.active_label.active": "Active",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.active_label.inactive": "Inactive",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.respawn_x_widget.label": "Respawn X",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.respawn_y_widget.label": "Respawn Y",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.respawn_z_widget.label": "Respawn Z",
+  "gui.n_gameplay_base.set_spawn_trigger_controller.respawn_facing_button.label": "Respawn Facing",
+
+  "block.minecraft.bed.not_possible_here": "Strangely, you don’t feel tired…",
+
+  "direction.up": "Up",
+  "direction.down": "Down",
+  "direction.north": "North",
+  "direction.south": "South",
+  "direction.west": "West",
+  "direction.east": "East"
 }

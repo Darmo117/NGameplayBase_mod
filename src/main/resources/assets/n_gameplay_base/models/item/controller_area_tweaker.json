@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "n_gameplay_base:item/wind_tweaker"
+    "layer0": "n_gameplay_base:item/controller_area_tweaker"
   }
 }
