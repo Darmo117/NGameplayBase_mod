@@ -156,7 +156,9 @@
   "block.n_gameplay_base.small_lights": "Small Lights",
   "block.n_gameplay_base.small_light": "Small Light",
   "block.n_gameplay_base.small_offset_light": "Small Offset Light",
+
   "block.n_gameplay_base.light_blocker": "Light Blocker",
+  "block.n_gameplay_base.kill_trigger": "Kill Trigger",
 
   "block.n_gameplay_base.light_block_1": "Light Block 1",
   "block.n_gameplay_base.light_block_2": "Light Block 2",

@@ -110,8 +110,6 @@ public final class ModBlocks {
   public static final CompositeBlock LIGHT_COMPOSITE_BLOCK =
       register("light_composite_block", new CompositeBlock(FabricBlockSettings.of(Material.STONE, MapColor.WHITE).luminance(15)));
 
-  public static final LightBlockerBlock LIGHT_BLOCKER = register("light_blocker", new LightBlockerBlock());
-
   // Ladders
   public static final ColoredBlockMap<LadderBlockWithoutSupport> COLORED_LADDERS =
       generateAndRegisterColoredBlocks("%s_ladder", LadderBlockWithoutSupport::new);
@@ -149,6 +147,11 @@ public final class ModBlocks {
 
   public static final WindControllerBlock WIND_CONTROLLER =
       register("wind_controller", new WindControllerBlock(), NGameplayBase.TECHNICAL_GROUP);
+
+  public static final LightBlockerBlock LIGHT_BLOCKER =
+      register("light_blocker", new LightBlockerBlock(), NGameplayBase.TECHNICAL_GROUP);
+  public static final KillTriggerBlock KILL_TRIGGER =
+      register("kill_trigger", new KillTriggerBlock(), NGameplayBase.TECHNICAL_GROUP);
 
   /**
    * Instanciates then registers a block for each {@link BlockColor} and puts them in the mod’s “Blocks” item group.
@@ -213,7 +216,7 @@ public final class ModBlocks {
     Registry.register(Registry.BLOCK, new Identifier(NGameplayBase.MOD_ID, name), block);
     if (itemGroup != null) {
       Item.Settings settings = new FabricItemSettings().group(itemGroup);
-      if (block instanceof OperatorBlock || block instanceof LightBlockerBlock) {
+      if (block instanceof OperatorBlock || block instanceof LightBlockerBlock || block instanceof KillTriggerBlock) {
         settings = settings.rarity(Rarity.EPIC);
       }
       BlockItem blockItem = new BlockItem(block, settings);
