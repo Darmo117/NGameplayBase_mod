@@ -4,7 +4,6 @@ import net.darmo_creations.n_gameplay_base.block_entities.ControllerBlockEntityW
 import net.darmo_creations.n_gameplay_base.blocks.ControllerBlockWithArea;
 import net.darmo_creations.n_gameplay_base.items.ControllerAreaTweakerItem;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
@@ -54,7 +53,7 @@ public abstract class ControllerBlockEntityWithAreaRenderer<T extends Controller
   @Override
   public void render(T be, float tickDelta, MatrixStack matrices,
                      VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    if (this.shouldRender(MinecraftClient.getInstance().player, be)) {
+    if (this.shouldRender(be)) {
       this.renderControllerToAreaLine(be, matrices, vertexConsumers);
       this.renderControllerBox(matrices, vertexConsumers);
       this.renderRegionBox(be, matrices, vertexConsumers);

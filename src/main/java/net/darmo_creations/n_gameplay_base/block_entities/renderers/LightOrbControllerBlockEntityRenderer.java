@@ -7,7 +7,6 @@ import net.darmo_creations.n_gameplay_base.blocks.LightOrbControllerBlock;
 import net.darmo_creations.n_gameplay_base.blocks.ModBlocks;
 import net.darmo_creations.n_gameplay_base.items.LightOrbTweakerItem;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
@@ -29,7 +28,8 @@ import java.util.Optional;
  * @see LightOrbControllerBlock
  * @see ModBlocks#LIGHT_ORB_CONTROLLER
  */
-public class LightOrbControllerBlockEntityRenderer extends ControllerBlockEntityRenderer<LightOrbControllerBlockEntity> {
+public class LightOrbControllerBlockEntityRenderer
+    extends ControllerBlockEntityRenderer<LightOrbControllerBlockEntity> {
   /**
    * Constructor required for registration.
    */
@@ -49,7 +49,7 @@ public class LightOrbControllerBlockEntityRenderer extends ControllerBlockEntity
   @Override
   public void render(LightOrbControllerBlockEntity be, float tickDelta, MatrixStack matrices,
                      VertexConsumerProvider vertexConsumers, int light, int overlay) {
-    if (this.shouldRender(MinecraftClient.getInstance().player, be)) {
+    if (this.shouldRender(be)) {
       this.renderControllerBox(matrices, vertexConsumers);
       be.getOrb().ifPresent(orb -> this.renderLightOrbBox(be, orb, matrices, vertexConsumers));
 
@@ -57,6 +57,15 @@ public class LightOrbControllerBlockEntityRenderer extends ControllerBlockEntity
       for (int i = 0, size = checkpoints.size(); i < size; i++) {
         PathCheckpoint checkpoint = checkpoints.get(i);
         PathCheckpoint nextCheckpoint = null;
+        if (i == 0) {
+          // Render line between controller and first checkpoint
+          RenderUtils.renderLineInWorld(
+              new Vec3d(0.5, 0.5, 0.5),
+              Vec3d.of(checkpoint.getPos().subtract(be.getPos())).add(0.5, 0.5, 0.5),
+              1, 1, 0,
+              matrices, vertexConsumers
+          );
+        }
         if (i == size - 1) {
           if (be.loops()) {
             nextCheckpoint = checkpoints.get(0);

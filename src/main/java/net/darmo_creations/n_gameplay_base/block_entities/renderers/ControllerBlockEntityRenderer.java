@@ -1,14 +1,13 @@
 package net.darmo_creations.n_gameplay_base.block_entities.renderers;
 
 import net.darmo_creations.n_gameplay_base.block_entities.ControllerBlockEntity;
-import net.darmo_creations.n_gameplay_base.items.ControllerStickItem;
 import net.darmo_creations.n_gameplay_base.items.ModItems;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -22,10 +21,10 @@ public abstract class ControllerBlockEntityRenderer<T extends ControllerBlockEnt
   /**
    * {@return whether anything should be rendered.}
    *
-   * @param player The player.
-   * @param be     The block entity to render.
+   * @param be The block entity to render.
    */
-  protected boolean shouldRender(final @Nullable PlayerEntity player, final T be) {
+  protected boolean shouldRender(final T be) {
+    ClientPlayerEntity player = MinecraftClient.getInstance().player;
     if (player == null || !player.isCreativeLevelTwoOp() && !player.isSpectator()) {
       return false;
     }
